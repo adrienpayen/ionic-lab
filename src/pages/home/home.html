@@ -1,18 +1,64 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="menu"></ion-icon>
+      <ion-icon name="information-circle"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+<ion-content class="card-background-page">
+  <ion-card>
+    <img src="https://www.dentons.com/-/media/images/website/background-images/offices/amsterdam/amsterdam_1900x1500px.jpg"/>
+    <div class="card-title">Amsterdam</div>
+    <div class="card-subtitle">23d 10h 21m 10s</div>
+  </ion-card>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-list>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://png.icons8.com/color/1600/nasa.png">
+        </ion-thumbnail>
+        <h2>My Neighbor Totoro</h2>
+        <p>Hayao Miyazaki • 1988</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://png.icons8.com/color/1600/nasa.png">
+        </ion-thumbnail>
+        <h2>My Neighbor Totoro</h2>
+        <p>Hayao Miyazaki • 1988</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://png.icons8.com/color/1600/nasa.png">
+        </ion-thumbnail>
+        <h2>My Neighbor Totoro</h2>
+        <p>Hayao Miyazaki • 1988</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src="https://png.icons8.com/color/1600/nasa.png">
+        </ion-thumbnail>
+        <h2>My Neighbor Totoro</h2>
+        <p>Hayao Miyazaki • 1988</p>
+        <button ion-button clear item-end>View</button>
+      </ion-item>
+    </ion-list>
 </ion-content>
+
+<ion-footer no-border>
+  <ion-toolbar transparent>
+      <div class="text-center">
+          <button ion-button class="btn menu-buttons" clear><ion-icon name="flame"></ion-icon></button>
+          <button ion-button class="btn menu-buttons main-button" clear><ion-icon name="home"></ion-icon></button>
+          <button ion-button class="btn menu-buttons" clear><ion-icon name="text"></ion-icon></button>
+      </div>
+  </ion-toolbar>
+</ion-footer>
