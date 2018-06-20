@@ -8,67 +8,25 @@
 </ion-header>
 
 <ion-content class="card-background-page">
-  <ion-card>
-    <img src="https://www.dentons.com/-/media/images/website/background-images/offices/amsterdam/amsterdam_1900x1500px.jpg"/>
-    <div class="card-title">Amsterdam</div>
-    <div class="card-subtitle">23d 10h 21m 10s</div>
+  <ion-card *ngIf="nextLaunch">
+    <img src="{{nextLaunch.links.mission_patch_small}}"/>
+    <div class="card-title">{{nextLaunch.mission_name}}</div>
+    <div class="card-subtitle">210d 10h 21m 10s</div>
   </ion-card>
 
   <ion-list>
-      <ion-item>
+
+      <ion-item *ngFor="let launch of allLaunches">
         <ion-thumbnail item-start>
-          <img src="https://png.icons8.com/color/1600/nasa.png">
+          <img src="{{launch.links.mission_patch_small}}">
         </ion-thumbnail>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <button ion-button clear item-end>View</button>
+        <h2>{{launch.mission_name}}</h2>
+        <p>{{launch.details}}</p>
+        <button ion-button clear item-end>Read More</button>
       </ion-item>
 
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://png.icons8.com/color/1600/nasa.png">
-        </ion-thumbnail>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
+  </ion-list>
 
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://png.icons8.com/color/1600/nasa.png">
-        </ion-thumbnail>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
-
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://png.icons8.com/color/1600/nasa.png">
-        </ion-thumbnail>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
-
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://png.icons8.com/color/1600/nasa.png">
-        </ion-thumbnail>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
-
-      <ion-item>
-        <ion-thumbnail item-start>
-          <img src="https://png.icons8.com/color/1600/nasa.png">
-        </ion-thumbnail>
-        <h2>My Neighbor Totoro</h2>
-        <p>Hayao Miyazaki • 1988</p>
-        <button ion-button clear item-end>View</button>
-      </ion-item>
-    </ion-list>
 </ion-content>
 
 <ion-footer>

@@ -1,7 +1,7 @@
 import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
-import {ILaunchsite} from "../../app/Models/ILaunch";
+import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
 
 
 /*
@@ -21,5 +21,10 @@ export class SpacexApiProvider {
     const endpointUrl = `${this.baseUrl}/launches/all`;
     const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<ILaunchsite[]>(endpointUrl, {params: httpParams});
+  }
+
+  getNextLaunch(): Observable<ILaunchsite> {
+    const endpointUrl = `${this.baseUrl}/launches/next`;
+    return this.http.get<ILaunchsite>(endpointUrl);
   }
 }
