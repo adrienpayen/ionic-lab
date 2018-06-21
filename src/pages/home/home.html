@@ -8,6 +8,7 @@
 </ion-header>
 
 <ion-content class="card-background-page">
+
   <ion-card *ngIf="nextLaunch">
     <img src="{{nextLaunch.links.mission_patch_small}}"/>
     <div class="card-title">{{nextLaunch.mission_name}}</div>
@@ -16,14 +17,14 @@
 
   <ion-list>
 
-      <ion-item *ngFor="let launch of allLaunches">
-        <ion-thumbnail item-start>
-          <img src="{{launch.links.mission_patch_small}}">
-        </ion-thumbnail>
-        <h2>{{launch.mission_name}}</h2>
-        <p>{{launch.details}}</p>
-        <button ion-button clear item-end>Read More</button>
-      </ion-item>
+    <ion-item *ngFor="let launch of allLaunches">
+      <ion-thumbnail item-start>
+        <img src="{{launch.links.mission_patch_small}}">
+      </ion-thumbnail>
+      <h2>{{launch.mission_name}}</h2>
+      <p>{{launch.details}}</p>
+      <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+    </ion-item>
 
   </ion-list>
 
@@ -31,10 +32,16 @@
 
 <ion-footer>
   <ion-toolbar>
-      <div class="text-center">
-          <button ion-button class="btn menu-buttons" clear><ion-icon name="flame"></ion-icon></button>
-          <button ion-button class="btn menu-buttons main-button" clear><ion-icon name="home"></ion-icon></button>
-          <button ion-button class="btn menu-buttons" clear><ion-icon name="text"></ion-icon></button>
-      </div>
+    <div class="text-center">
+      <button ion-button class="btn menu-buttons" clear>
+        <ion-icon name="flame"></ion-icon>
+      </button>
+      <button ion-button class="btn menu-buttons main-button" clear>
+        <ion-icon name="home"></ion-icon>
+      </button>
+      <button ion-button class="btn menu-buttons" clear>
+        <ion-icon name="text"></ion-icon>
+      </button>
+    </div>
   </ion-toolbar>
 </ion-footer>
