@@ -10,9 +10,16 @@
 <ion-content class="card-background-page">
 
   <ion-card *ngIf="nextLaunch">
-    <img src="{{nextLaunch.links.mission_patch_small}}"/>
+    <div  *ngIf="nextLaunch.links.mission_patch_small">
+      <img src="{{nextLaunch.links.mission_patch_small}}"/>
+    </div>
+
+    <div  *ngIf="!nextLaunch.links.mission_patch_small">
+      <img src="https://www.cabinetmakerwarehouse.com/wp-content/uploads/9242-gull-grey.jpg"/>
+    </div>
     <div class="card-title">{{nextLaunch.mission_name}}</div>
-    <div class="card-subtitle">210d 10h 21m 10s</div>
+    <div class="card-subtitle"></div>
+    <!-- countdown [config]="{ leftTime: nextLaunch.launch_date_unix }">$!h!:$!m!:$!s!</countdown> -->
   </ion-card>
 
   <ion-list>
