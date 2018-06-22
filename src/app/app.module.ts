@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
-import { CountdownModule } from 'ngx-countdown';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -19,8 +18,7 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp),
-    CountdownModule
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
