@@ -3,6 +3,7 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {SpacexApiProvider} from "../../providers/spacex-api/spacex-api";
 import {ILaunchsite} from "../../app/Models/ILaunch";
 import {Observable} from 'rxjs/Observable';
+import {LaunchPage} from '../launch/launch';
 
 
 @IonicPage()
@@ -13,7 +14,7 @@ import {Observable} from 'rxjs/Observable';
 export class HomePage {
 
   private allLaunches: ILaunchsite[];
-  private nextLaunch: ILaunchsite[];
+  private nextLaunch: ILaunchsite;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
 
@@ -25,17 +26,16 @@ export class HomePage {
       this.nextLaunch = data;
     });
 
+
   }
 
   /**
    *
-   * @param id
-   * You get launcher id with this method
+   * @param flight_number
+   * Get launch page by its ID
    */
-  public readMore(id: any) {
-    this.spacexApi.getAllLaunches({'flight_number': id}).subscribe(data => {
-      console.log(data)
-    });
+  public readMore(flight_number: any) {
+    this.navCtrl.push(LaunchPage, { flight_number: flight_number});
   }
 
 }

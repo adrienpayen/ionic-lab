@@ -1,9 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
+import { CountDown } from "ng4-date-countdown-timer";
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { LaunchPage } from '../pages/launch/launch';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -14,6 +16,8 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
   declarations: [
     MyApp,
     HomePage,
+    LaunchPage,
+    CountDown
   ],
   imports: [
     BrowserModule,
@@ -24,6 +28,7 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
   entryComponents: [
     MyApp,
     HomePage,
+    LaunchPage,
   ],
   providers: [
     StatusBar,

@@ -18,8 +18,7 @@
       <img src="https://www.cabinetmakerwarehouse.com/wp-content/uploads/9242-gull-grey.jpg"/>
     </div>
     <div class="card-title">{{nextLaunch.mission_name}}</div>
-    <div class="card-subtitle"></div>
-    <!-- countdown [config]="{ leftTime: nextLaunch.launch_date_unix }">$!h!:$!m!:$!s!</countdown> -->
+    <div class="card-subtitle" style="color: white !important;"><countdown units="Days | Hours | Minutes | Seconds"  end="{{nextLaunch.launch_date_utc | date}}"></countdown></div>
   </ion-card>
 
   <ion-list>
@@ -28,7 +27,8 @@
       <ion-thumbnail item-start>
         <img src="{{launch.links.mission_patch_small}}">
       </ion-thumbnail>
-      <h2>{{launch.mission_name}}</h2>
+      <h2 [ngClass]="{'success':     launch.launch_success == true,
+                      'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
       <p>{{launch.details}}</p>
       <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
     </ion-item>
