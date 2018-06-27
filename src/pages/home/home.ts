@@ -15,6 +15,7 @@ export class HomePage {
 
   private allLaunches: ILaunchsite[];
   private nextLaunch: ILaunchsite;
+  private searchMission: HTMLInputElement;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
 
