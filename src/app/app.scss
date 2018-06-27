@@ -39,3 +39,28 @@
 a {
     text-decoration: none;
 }
+
+.search-bar {
+    position: relative;
+    top: -30px;
+    background: #fff;
+    box-shadow: 1px 1px 10px #555;
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 3px;
+    display: block;
+    text-align: center;
+
+    .items {
+        padding: 5px 15px 5px 15px;
+
+        ion-item {
+            padding-left: 0px;
+        }
+        .text-input-wp {
+            border: none;
+        }
+    }
+   
+}

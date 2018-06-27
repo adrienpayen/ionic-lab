@@ -22,8 +22,17 @@
   </ion-card>
 
   <ion-list>
+    <div class="search-bar">
+      <div class="items">
+          <ion-item>
+              <ion-input [(ngModel)]="searchMission" type="search" placeholder="Search..." clearInput></ion-input>
+          </ion-item>
+      </div>
+    </div>
+      
+    
 
-    <ion-item *ngFor="let launch of allLaunches">
+    <ion-item *ngFor="let launch of allLaunches | filter : searchMission">
       <ion-thumbnail item-start>
         <img src="{{launch.links.mission_patch_small}}">
       </ion-thumbnail>
