@@ -16,6 +16,7 @@ export class HomePage {
   private allLaunches: ILaunchsite[];
   private nextLaunch: ILaunchsite;
   private searchMission: HTMLInputElement;
+  private launches: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
 
@@ -27,6 +28,7 @@ export class HomePage {
       this.nextLaunch = data;
     });
 
+    this.launches = "all";
 
   }
 

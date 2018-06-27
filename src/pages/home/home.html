@@ -30,17 +30,43 @@
       </div>
     </div>
       
-    
+    <ion-toolbar no-border-top>
+      <ion-segment [(ngModel)]="launches">
+        <ion-segment-button value="all" default>
+            All
+        </ion-segment-button>
+        <ion-segment-button value="upcoming">
+            Upcoming
+        </ion-segment-button>
+        <ion-segment-button value="past">
+            Past
+        </ion-segment-button>
+      </ion-segment>
+    </ion-toolbar>
 
-    <ion-item *ngFor="let launch of allLaunches | filter : searchMission">
-      <ion-thumbnail item-start>
-        <img src="{{launch.links.mission_patch_small}}">
-      </ion-thumbnail>
-      <h2 [ngClass]="{'success':     launch.launch_success == true,
-                      'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-      <p>{{launch.details}}</p>
-      <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
-    </ion-item>
+    <div [ngSwitch]="launches">
+        <ion-list *ngSwitchCase="'all'">
+          <ion-item *ngFor="let launch of allLaunches | filter : searchMission">
+              <ion-thumbnail item-start>
+                <img src="{{launch.links.mission_patch_small}}">
+              </ion-thumbnail>
+              <h2 [ngClass]="{'success':     launch.launch_success == true,
+                              'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
+              <p>{{launch.details}}</p>
+              <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+            </ion-item>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'upcoming'">
+
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'past'">
+
+        </ion-list>
+    </div>
+
+    
 
   </ion-list>
 
