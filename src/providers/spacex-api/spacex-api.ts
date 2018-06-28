@@ -28,4 +28,17 @@ export class SpacexApiProvider {
     const endpointUrl = `${this.baseUrl}/launches/next`;
     return this.http.get<ILaunchsite>(endpointUrl);
   }
+
+  getUpcomingLaunches(params: any): Observable<ILaunchsite[]> {
+    const endpointUrl = `${this.baseUrl}/launches/upcoming`;
+    const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ILaunchsite[]>(endpointUrl, {params: httpParams});
+  }
+
+  getPastLaunches(params: any): Observable<ILaunchsite[]> {
+    const endpointUrl = `${this.baseUrl}/launches`;
+    const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ILaunchsite[]>(endpointUrl, {params: httpParams});
+  }
+  
 }
