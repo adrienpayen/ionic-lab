@@ -14,8 +14,11 @@ import {LaunchPage} from '../launch/launch';
 export class HomePage {
 
   private allLaunches: ILaunchsite[];
+  private upcomingLaunches: ILaunchsite[];
+  private pastLaunches: ILaunchsite[];
   private nextLaunch: ILaunchsite;
   private searchMission: HTMLInputElement;
+  private launches: string;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
 
@@ -27,6 +30,15 @@ export class HomePage {
       this.nextLaunch = data;
     });
 
+    this.spacexApi.getUpcomingLaunches({order: 'desc'}).subscribe(  data => {
+      this.upcomingLaunches = data;
+    });
+    
+    this.spacexApi.getPastLaunches({order: 'desc'}).subscribe(  data => {
+      this.pastLaunches = data;
+    });
+
+    this.launches = "all";
 
   }
 
