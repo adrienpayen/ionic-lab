@@ -24,6 +24,7 @@ export class HomePage {
 
     this.spacexApi.getAllLaunches({order: 'desc'}).subscribe(data => {
       this.allLaunches = data;
+      console.log(data);
     });
 
     this.spacexApi.getNextLaunch().subscribe(  data => {

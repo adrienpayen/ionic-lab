@@ -36,6 +36,19 @@
     color: orangered;
 }
 
+.badge {
+    font-size: 0.6em;
+    color: white;
+}
+
+.success-badge {
+    background-color: green;
+}
+
+.fail-badge {
+    background-color: orangered;
+}
+
 a {
     text-decoration: none;
 }

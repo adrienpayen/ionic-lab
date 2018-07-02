@@ -21,7 +21,6 @@
     <div class="card-title">
       {{nextLaunch.mission_name}}
       <br>
-      <ion-badge item-end>Success</ion-badge>
     </div>
     
     <div class="card-subtitle" style="color: white !important;"><countdown units="Days | Hours | Minutes | Seconds"  end="{{nextLaunch.launch_date_local | date:'yyyy-MM-dd HH:mm:ss Z'}}"></countdown></div>
@@ -53,20 +52,40 @@
     <div [ngSwitch]="launches">
         <ion-list *ngSwitchCase="'all'">
           <ion-item *ngFor="let launch of allLaunches | filter : searchMission">
-            <ion-thumbnail item-start>
+            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
             </ion-thumbnail>
+            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
+            </ion-thumbnail>       
+
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>{{launch.details}}</p>
+            <p>
+                <span *ngIf="launch.launch_success == true">
+                    <ion-badge class="badge success-badge ">Success</ion-badge>
+                </span>
+          
+                <span *ngIf="launch.launch_success == false">
+                    <ion-badge class="badge fail-badge ">Fail</ion-badge>
+                </span>
+                <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
+                <ion-badge class="badge">{{launch.launch_year}}</ion-badge>
+                
+                
+                <br>
+              {{launch.details}}</p>
             <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'upcoming'">
           <ion-item *ngFor="let launch of upcomingLaunches | filter : searchMission">
-            <ion-thumbnail item-start>
+            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
+            </ion-thumbnail>
+            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
             </ion-thumbnail>
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
@@ -77,8 +96,11 @@
 
         <ion-list *ngSwitchCase="'past'">
           <ion-item *ngFor="let launch of pastLaunches | filter : searchMission">
-            <ion-thumbnail item-start>
+            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
+            </ion-thumbnail>
+            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
             </ion-thumbnail>
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
