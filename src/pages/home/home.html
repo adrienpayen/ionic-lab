@@ -23,7 +23,12 @@
       <br>
     </div>
     
-    <div class="card-subtitle" style="color: white !important;"><countdown units="Days | Hours | Minutes | Seconds"  end="{{nextLaunch.launch_date_local | date:'yyyy-MM-dd HH:mm:ss Z'}}"></countdown></div>
+    <div *ngIf="timerOn == 1" class="card-subtitle" style="color: white !important;"><countdown (reached)="checkTimer()" units="Days | Hours | Minutes | Seconds"  end="{{ nextLaunch.launch_date_local | date:'yyyy-MM-dd HH:mm:ss Z'}}"></countdown></div>
+    <div *ngIf="timerOn == 0" class="card-subtitle" style="color: white !important;">
+      <div class="live">
+          <a class="link" href="{{nextLaunch.links.video_link}}"><br><img class="button" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/600px-Button_Icon_Red.svg.png">Watch Live Now !</a>
+      </div>     
+    </div>
   </ion-card>
 
   <ion-list>
@@ -70,10 +75,7 @@
                     <ion-badge class="badge fail-badge ">Fail</ion-badge>
                 </span>
                 <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
-                <ion-badge class="badge">{{launch.launch_year}}</ion-badge>
-                
-                
-                <br>
+                <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
               {{launch.details}}</p>
             <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
           </ion-item>
@@ -89,7 +91,17 @@
             </ion-thumbnail>
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>{{launch.details}}</p>
+            <p>
+              <span *ngIf="launch.launch_success == true">
+                  <ion-badge class="badge success-badge ">Success</ion-badge>
+              </span>
+        
+              <span *ngIf="launch.launch_success == false">
+                  <ion-badge class="badge fail-badge ">Fail</ion-badge>
+              </span>
+              <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
+              <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
+              {{launch.details}}</p>
             <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
           </ion-item>
         </ion-list>
@@ -104,10 +116,21 @@
             </ion-thumbnail>
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>{{launch.details}}</p>
+            <p>
+              <span *ngIf="launch.launch_success == true">
+                  <ion-badge class="badge success-badge ">Success</ion-badge>
+              </span>
+        
+              <span *ngIf="launch.launch_success == false">
+                  <ion-badge class="badge fail-badge ">Fail</ion-badge>
+              </span>
+              <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
+              <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
+              {{launch.details}}</p>
             <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
           </ion-item>
         </ion-list>
+
     </div>
 
     

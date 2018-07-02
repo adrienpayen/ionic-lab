@@ -18,27 +18,27 @@ export class SpacexApiProvider {
   constructor(private http: HttpClient) {
   }
 
-  getAllLaunches(params: any): Observable<ILaunchsite[]> {
+  getAllLaunches(params: any): Observable<IRootObject[]> {
     const endpointUrl = `${this.baseUrl}/launches/all`;
     const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
-    return this.http.get<ILaunchsite[]>(endpointUrl, {params: httpParams});
+    return this.http.get<IRootObject[]>(endpointUrl, {params: httpParams});
   }
 
-  getNextLaunch(): Observable<ILaunchsite> {
+  getNextLaunch(): Observable<IRootObject> {
     const endpointUrl = `${this.baseUrl}/launches/next`;
-    return this.http.get<ILaunchsite>(endpointUrl);
+    return this.http.get<IRootObject>(endpointUrl);
   }
 
-  getUpcomingLaunches(params: any): Observable<ILaunchsite[]> {
+  getUpcomingLaunches(params: any): Observable<IRootObject[]> {
     const endpointUrl = `${this.baseUrl}/launches/upcoming`;
     const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
-    return this.http.get<ILaunchsite[]>(endpointUrl, {params: httpParams});
+    return this.http.get<IRootObject[]>(endpointUrl, {params: httpParams});
   }
 
-  getPastLaunches(params: any): Observable<ILaunchsite[]> {
+  getPastLaunches(params: any): Observable<IRootObject[]> {
     const endpointUrl = `${this.baseUrl}/launches`;
     const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
-    return this.http.get<ILaunchsite[]>(endpointUrl, {params: httpParams});
+    return this.http.get<IRootObject[]>(endpointUrl, {params: httpParams});
   }
   
 }
