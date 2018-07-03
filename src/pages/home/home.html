@@ -1,7 +1,7 @@
 <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
-      <ion-icon name="information-circle"></ion-icon>
+      <ion-icon name="ios-menu"></ion-icon>
     </button>
     <ion-title>Home</ion-title>
   </ion-navbar>
@@ -50,16 +50,21 @@
       </ion-segment>
     </ion-toolbar>
 
-    <div [ngSwitch]="launches">
+    <div [ngSwitch]="launches" padding>
         <ion-list *ngSwitchCase="'all'">
-          <ion-item *ngFor="let launch of allLaunches | filter : searchMission">
-            <ion-thumbnail item-start>
-              <img src="{{launch.links.mission_patch_small}}">
-            </ion-thumbnail>
-            <h2 [ngClass]="{'success':     launch.launch_success == true,
-                            'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>{{launch.details}}</p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+          <ion-item *ngFor="let launch of allLaunches | filter : searchMission" style="background:linear-gradient(45deg, #535e81, #2f3a5b); border-radius: 10px; padding: 10px 20px; margin-bottom:15px; color: white;">
+              <ion-icon [ngClass]="{'success':     launch.launch_success == true,
+                'fail':   launch.launch_success == false}" name="ios-radio-button-on"></ion-icon>
+              <ion-thumbnail item-start>
+                <img src="{{launch.links.mission_patch_small}}">
+              </ion-thumbnail>
+              <h2>
+                {{launch.mission_name}}
+              </h2>
+              <p>{{launch.details}}</p>
+              <button ion-button clear item-end (click)="readMore(launch.flight_number)">
+                <ion-icon name="ios-arrow-forward"></ion-icon>
+              </button>
           </ion-item>
         </ion-list>
 
@@ -71,7 +76,9 @@
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
             <p>{{launch.details}}</p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+            <button ion-button clear item-end (click)="readMore(launch.flight_number)">
+              <ion-icon name="ios-arrow-forward"></ion-icon>
+            </button>
           </ion-item>
         </ion-list>
 
@@ -83,7 +90,9 @@
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
             <p>{{launch.details}}</p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+            <button ion-button clear item-end (click)="readMore(launch.flight_number)">
+              <ion-icon name="ios-arrow-forward"></ion-icon>
+            </button>
           </ion-item>
         </ion-list>
     </div>

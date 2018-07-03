@@ -29,11 +29,11 @@
 }
 
 .success {
-    color: green;
+    color: rgb(76, 190, 76);
 }
 
 .fail {
-    color: orangered;
+    color: rgb(223, 119, 81);
 }
 
 a {
@@ -62,5 +62,35 @@ a {
             border: none;
         }
     }
-   
+}
+
+.item {
+    margin-bottom: 4px;
+}
+
+.list .item-block .item-inner {
+    border: none;
+}
+
+.content{
+    color:#cbced8;
+    background: linear-gradient(#3b4365, #222d46);
+}
+
+.footer{
+    margin: 0;
+
+    .btn {
+        height: 50px;
+        padding: 0;
+        margin: 0 1.5em;
+    }
+}
+
+.toolbar-background {
+    background: none;
+}
+
+.toolbar-title{
+    color: white;
 }
