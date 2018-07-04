@@ -73,24 +73,40 @@ a {
 }
 
 .content{
-    color:#cbced8;
-    background: linear-gradient(#3b4365, #222d46);
+    color:#ada4f6;
+    background: #e7f1f7;
+}
+
+.bar-button-menutoggle{
+    display: initial;
 }
 
 .footer{
     margin: 0;
 
+    .menu-buttons {
+        font-size: 25px;
+    }
+
     .btn {
+        color:#ccd8e1;
         height: 50px;
         padding: 0;
-        margin: 0 1.5em;
+        margin: 0 1.2em;
     }
 }
 
 .toolbar-background {
-    background: none;
+    background: #e7f1f7;
 }
 
 .toolbar-title{
-    color: white;
+    color:#ada4f6;
+    background: white;
+}
+
+.menu-left{
+    .item {
+        background: transparent;
+    }
 }

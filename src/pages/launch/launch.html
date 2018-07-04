@@ -1,48 +1,36 @@
-<!--
-  Generated template for the LaunchPage page.
-
-  See http://ionicframework.com/docs/components/#navigation for more info on
-  Ionic pages and navigation.
--->
-<ion-header>
-
-  <ion-navbar>
-    <ion-title>Launch </ion-title>
-  </ion-navbar>
-
-</ion-header>
-
-
 <ion-content class="card-background-page">
-    <ion-card *ngIf="launch">
-        <div  *ngIf="launch.links.mission_patch_small">
+    <div *ngIf="launch">
+        <h1>{{launch.mission_name}}</h1>
+        <div  *ngIf="launch.links.mission_patch_small" style="max-width: 150px; margin: auto;">
             <img src="{{launch.links.mission_patch_small}}"/>
         </div>
-      
+        
         <div  *ngIf="!launch.links.mission_patch_small">
             <img src="https://www.cabinetmakerwarehouse.com/wp-content/uploads/9242-gull-grey.jpg"/>
         </div>
+    </div>
+    <ion-card *ngIf="launch">
         <ion-card-content>
-          <ion-card-title>
-              {{launch.mission_name}} - on {{launch.launch_date_utc | date}}
+            <ion-card-title>
+                {{launch.mission_name}} - on {{launch.launch_date_utc | date}}
             </ion-card-title>
-          <p>
-              {{launch.details}}<br>
-          </p> 
-          <p>
-              <a href="{{launch.links.video_link}}" target="blank" ><ion-icon name="logo-youtube" padding item-start></ion-icon>Watch Video</a>
-          </p>
+             <p>
+                {{launch.details}}<br>
+            </p> 
+            <p class="text-center video">
+                <a href="{{launch.links.video_link}}" target="blank" class="youtube-video"><ion-icon name="ios-play" padding item-start></ion-icon></a>
+            </p>
         </ion-card-content>
         
       </ion-card>
 
-      <ion-card *ngIf="launch">
-        <ion-card-header>
-          More Info
-        </ion-card-header>
+      <h2>More info</h2>
+      <ion-card *ngIf="launch" class="info-content">
         <ion-card-content>
             <ion-item>
-                <ion-icon name="jet" item-start></ion-icon>{{launch.rocket.rocket_name}} <ion-badge item-end>More Info</ion-badge>
+                <ion-icon name="jet" item-start></ion-icon>
+                {{launch.rocket.rocket_name}} 
+                <ion-badge item-end>More Info</ion-badge>
             </ion-item>
             <ion-item>
                 <ion-icon name="pin" item-start></ion-icon>{{launch.launch_site.site_name}} <ion-badge item-end>More Info</ion-badge>
@@ -55,8 +43,23 @@
             </ion-item>
         </ion-card-content>
       </ion-card>
-        
-       
-        
-      
 </ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+        <div class="text-center">
+            <button ion-button menuToggle class="btn menu-buttons" clear>
+                <ion-icon name="ios-more" style="color: #ada4f6;"></ion-icon>
+            </button>
+            <button ion-button class="btn menu-buttons" clear>
+                <ion-icon name="flame"></ion-icon>
+            </button>
+            <button ion-button class="btn menu-buttons main-button" clear>
+                <ion-icon name="home"></ion-icon>
+            </button>
+            <button ion-button class="btn menu-buttons" clear>
+                <ion-icon name="text"></ion-icon>
+            </button>
+        </div>
+    </ion-toolbar>
+</ion-footer>

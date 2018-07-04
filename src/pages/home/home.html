@@ -1,11 +1,4 @@
-<ion-header>
-  <ion-navbar>
-    <button ion-button menuToggle>
-      <ion-icon name="ios-menu"></ion-icon>
-    </button>
-    <ion-title>Home</ion-title>
-  </ion-navbar>
-</ion-header>
+
 
 <ion-content class="card-background-page">
 
@@ -52,7 +45,7 @@
 
     <div [ngSwitch]="launches" padding>
         <ion-list *ngSwitchCase="'all'">
-          <ion-item *ngFor="let launch of allLaunches | filter : searchMission" style="background:linear-gradient(45deg, #535e81, #2f3a5b); border-radius: 10px; padding: 10px 20px; margin-bottom:15px; color: white;">
+          <ion-item *ngFor="let launch of allLaunches | filter : searchMission" style="background:white; border-radius: 10px; padding: 10px 20px; margin-bottom:15px; color: black; box-shadow: 0px 20px 4px -15px rgb(219, 223, 224);">
               <ion-icon [ngClass]="{'success':     launch.launch_success == true,
                 'fail':   launch.launch_success == false}" name="ios-radio-button-on"></ion-icon>
               <ion-thumbnail item-start>
@@ -106,11 +99,14 @@
 <ion-footer>
   <ion-toolbar>
     <div class="text-center">
+      <button ion-button menuToggle class="btn menu-buttons" clear>
+        <ion-icon name="ios-more"></ion-icon>
+      </button>
       <button ion-button class="btn menu-buttons" clear>
         <ion-icon name="flame"></ion-icon>
       </button>
-      <button ion-button class="btn menu-buttons main-button" clear>
-        <ion-icon name="home"></ion-icon>
+      <button ion-button class="btn menu-buttons main-button" clear style="color: #ada4f6;">
+        <ion-icon name="ios-paper"></ion-icon>
       </button>
       <button ion-button class="btn menu-buttons" clear>
         <ion-icon name="text"></ion-icon>
