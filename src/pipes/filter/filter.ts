@@ -9,18 +9,24 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'filter',
 })
 export class FilterPipe implements PipeTransform {
-  transform(items: any[], searchText: string): any[] {
-      if (!items) {
-          return [];
-      }
 
-      if (!searchText) {
-          return items;
-      }
+    /**
+     * Returns launches that start with the same letters as the SearchText
+     * @param items 
+     * @param searchText 
+     */
+    transform(items: any[], searchText: string): any[] {
+        if (!items) {
+            return [];
+        }
 
-      searchText = searchText.toLowerCase();
-      return items.filter(item => {
-          return item.mission_name.toLowerCase().includes(searchText);
-      });
-  }
+        if (!searchText) {
+            return items;
+        }
+
+        searchText = searchText.toLowerCase();
+        return items.filter(item => {
+            return item.mission_name.toLowerCase().includes(searchText);
+        });
+    }
 }

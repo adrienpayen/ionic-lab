@@ -2,6 +2,7 @@ import {HttpClient, HttpParams} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
+import {IRocket} from "../../app/Models/IRocket";
 
 
 
@@ -17,6 +18,8 @@ export class SpacexApiProvider {
 
   constructor(private http: HttpClient) {
   }
+
+  /* Launch Data */
 
   getAllLaunches(params: any): Observable<IRootObject[]> {
     const endpointUrl = `${this.baseUrl}/launches/all`;
@@ -40,5 +43,12 @@ export class SpacexApiProvider {
     const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<IRootObject[]>(endpointUrl, {params: httpParams});
   }
-  
+
+  /* Rocket data */
+
+  getAllRockets(params: any): Observable<IRocket[]> {
+    const endpointUrl = `${this.baseUrl}/rockets`;
+    const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<IRocket[]>(endpointUrl, {params: httpParams});
+  }
 }

@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {SpacexApiProvider} from "../../providers/spacex-api/spacex-api";
 import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
+import {IRocket} from "../../app/Models/IRocket";
 import {Observable} from 'rxjs/Observable';
 import {LaunchPage} from '../launch/launch';
 
@@ -17,12 +18,28 @@ export class HomePage {
   private upcomingLaunches: IRootObject[];
   private pastLaunches: IRootObject[];
   private nextLaunch: IRootObject;
-  private searchMission: HTMLInputElement;
+
+  private allRockets: IRocket[];
+
+  private missionName: string;
+  private rocketId: string;
+
   private launches: string;
   private timerOn: number;
+  private filtersOn: number;
+  private dateRange: any = { lower: 0, upper: 100 };
+  private recentOn: number;
+  private successOn: number;
+  private failOn: number;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
     this.timerOn = 1;
+    this.filtersOn = 0;
+    this.launches = "all";
+    this.rocketId = "all";
+    this.recentOn = 1;
+    this.successOn = 1;
+    this.failOn = 1;
 
     this.spacexApi.getAllLaunches({order: 'desc'}).subscribe(data => {
       this.allLaunches = data;
@@ -41,7 +58,10 @@ export class HomePage {
       this.pastLaunches = data;
     });
 
-    this.launches = "all";
+    this.spacexApi.getAllRockets({}).subscribe(  data => {
+      this.allRockets = data;
+    });
+
   }
 
   /**
@@ -68,6 +88,14 @@ export class HomePage {
 
     if(launchDate <= today) {
       this.timerOn = 0;
+    }
+  }
+
+  public showFilters() {
+    if(this.filtersOn) {
+      this.filtersOn = 0;
+    } else {
+      this.filtersOn = 1;
     }
   }
 
