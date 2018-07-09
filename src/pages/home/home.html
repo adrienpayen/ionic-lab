@@ -65,7 +65,7 @@
 
       <ion-item>
         <ion-label>Show by Most Recent</ion-label>
-        <ion-toggle [(ngModel)]="recentOn" value="true" checked="true"></ion-toggle>
+        <ion-toggle [(ngModel)]="recentOn" (ngModelChange)="getMostRecentsOn($event)" value="true" checked="true"></ion-toggle>
       </ion-item>
      
       <ion-item>
@@ -96,7 +96,7 @@
 
     <div [ngSwitch]="launches">
         <ion-list *ngSwitchCase="'all'">
-          <ion-item *ngFor="let launch of allLaunches | filter : missionName | launchFilter : {'rocket': rocketId, 'dateRange' : dateRange, 'recent': recentOn, 'success': successOn, 'fail': failOn}">
+          <ion-item *ngFor="let launch of allLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
             <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
             </ion-thumbnail>
@@ -122,7 +122,7 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'upcoming'">
-          <ion-item *ngFor="let launch of upcomingLaunches | filter : searchMission | launchFilter : {'rocket': rocketId, 'dateRange' : dateRange, 'recentOn': recentOn, 'successOn': successOn, 'failOn': faillOn}">
+          <ion-item *ngFor="let launch of upcomingLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
             <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
             </ion-thumbnail>
@@ -147,7 +147,7 @@
         </ion-list>
 
         <ion-list *ngSwitchCase="'past'">
-          <ion-item *ngFor="let launch of pastLaunches | filter : searchMission | launchFilter : {'rocket': rocketId, 'dateRange' : dateRange, 'recentOn': recentOn, 'successOn': successOn, 'failOn': faillOn}">
+          <ion-item *ngFor="let launch of pastLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
             <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
             </ion-thumbnail>

@@ -28,18 +28,18 @@ export class HomePage {
   private timerOn: number;
   private filtersOn: number;
   private dateRange: any = { lower: 0, upper: 100 };
-  private recentOn: number;
-  private successOn: number;
-  private failOn: number;
+  private recentOn: boolean;
+  private successOn: boolean;
+  private failOn: boolean;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
     this.timerOn = 1;
     this.filtersOn = 0;
     this.launches = "all";
     this.rocketId = "all";
-    this.recentOn = 1;
-    this.successOn = 1;
-    this.failOn = 1;
+    this.recentOn = true;
+    this.successOn = true;
+    this.failOn = true;
 
     this.spacexApi.getAllLaunches({order: 'desc'}).subscribe(data => {
       this.allLaunches = data;
@@ -96,6 +96,38 @@ export class HomePage {
       this.filtersOn = 0;
     } else {
       this.filtersOn = 1;
+    }
+  }
+
+  /**
+   * 
+   * @param value 
+   */
+  public getMostRecentsOn(value) { 
+    if(value) {
+      this.spacexApi.getAllLaunches({order: 'desc'}).subscribe(data => {
+        this.allLaunches = data;
+      });    
+
+      this.spacexApi.getUpcomingLaunches({order: 'desc'}).subscribe(  data => {
+        this.upcomingLaunches = data;
+      });
+      
+      this.spacexApi.getPastLaunches({order: 'desc'}).subscribe(  data => {
+        this.pastLaunches = data;
+      });
+    } else {
+      this.spacexApi.getAllLaunches({}).subscribe(data => {
+        this.allLaunches = data;
+      });
+
+      this.spacexApi.getUpcomingLaunches({}).subscribe(  data => {
+        this.upcomingLaunches = data;
+      });
+      
+      this.spacexApi.getPastLaunches({}).subscribe(  data => {
+        this.pastLaunches = data;
+      });
     }
   }
 
