@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ModalController} from 'ionic-angular';
 import {SpacexApiProvider} from "../../providers/spacex-api/spacex-api";
 import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
 import {IRocket} from "../../app/Models/IRocket";
 import {Observable} from 'rxjs/Observable';
 import {LaunchPage} from '../launch/launch';
-
+import {CalendarModal,CalendarModalOptions,CalendarComponentOptions } from 'ion2-calendar';
 
 @IonicPage()
 @Component({
@@ -27,12 +27,28 @@ export class HomePage {
   private launches: string;
   private timerOn: number;
   private filtersOn: number;
-  private dateRange: any = { lower: 0, upper: 100 };
   private recentOn: boolean;
   private successOn: boolean;
   private failOn: boolean;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
+  
+  private dateRange: {
+    from: Date;
+    to: Date
+  } = {
+    from: new Date(2006, 1, 1),
+    to: new Date(2050,1, 1)
+  };
+
+  private options: CalendarModalOptions = {
+    pickMode: 'range',
+    title: 'Launch Dates',
+    from: new Date(2006, 1, 1),
+    defaultDate: new Date(),
+    defaultScrollTo: new Date(Date.now())
+  };
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider, public modalController: ModalController) {
     this.timerOn = 1;
     this.filtersOn = 0;
     this.launches = "all";
@@ -130,6 +146,30 @@ export class HomePage {
         this.pastLaunches = data;
       });
     }
+  }
+
+  public openCalendar() {
+    let myCalendar = this.modalController.create(CalendarModal, {
+      options: this.options
+    });
+
+    myCalendar.present();
+
+    myCalendar.onDidDismiss((date, type) => {
+      if (type === 'done') {
+        this.spacexApi.getAllLaunches({start: date.from.string, final: date.to.string}).subscribe(data => {
+          this.allLaunches = data;
+        });    
+  
+        this.spacexApi.getUpcomingLaunches({start: date.from.string, final: date.to.string}).subscribe(  data => {
+          this.upcomingLaunches = data;
+        });
+        
+        this.spacexApi.getPastLaunches({start: date.from.string, final: date.to.string}).subscribe(  data => {
+          this.pastLaunches = data;
+        });
+      }
+    });
   }
 
 }

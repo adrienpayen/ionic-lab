@@ -58,9 +58,9 @@
       </ion-item>
       
       <ion-item>
-        <ion-range dualKnobs="true" pin="true" [(ngModel)]="dateRange" color="dark">
-          <ion-icon range-left name="calendar"></ion-icon>
-        </ion-range>
+        <button ion-button (click)="openCalendar()">
+          Select Date Range
+        </button>
       </ion-item>
 
       <ion-item>
