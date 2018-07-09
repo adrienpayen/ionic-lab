@@ -65,16 +65,14 @@ export class HomePage {
   }
 
   /**
-   *
-   * @param flight_number
    * Get launch page by its ID
+   * @param flight_number
    */
   public readMore(flight_number: any) {
     this.navCtrl.push(LaunchPage, { flight_number: flight_number});
   }
 
   /**
-   * 
    * Check timer countdown to replace with a live button
    */
   public checkTimer() {
@@ -91,6 +89,9 @@ export class HomePage {
     }
   }
 
+  /**
+   * Show/Hide filters
+   */
   public showFilters() {
     if(this.filtersOn) {
       this.filtersOn = 0;
@@ -100,7 +101,7 @@ export class HomePage {
   }
 
   /**
-   * 
+   * Update lists with order DESC / ASC on "Recent" filter
    * @param value 
    */
   public getMostRecentsOn(value) { 
