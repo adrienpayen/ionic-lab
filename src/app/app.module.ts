@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { LaunchPage } from '../pages/launch/launch';
 
 import { FilterPipe } from '../pipes/filter/filter';
+import { LaunchFilterPipe } from '../pipes/launch-filter/launch-filter';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
@@ -20,7 +21,8 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
     HomePage,
     LaunchPage,
     CountDown,
-    FilterPipe
+    FilterPipe,
+    LaunchFilterPipe
   ],
   imports: [
     BrowserModule,
