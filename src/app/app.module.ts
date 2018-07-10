@@ -9,10 +9,14 @@ import { LaunchPage } from '../pages/launch/launch';
 
 import { FilterPipe } from '../pipes/filter/filter';
 import { LaunchFilterPipe } from '../pipes/launch-filter/launch-filter';
+import { SuccessFilterPipe } from '../pipes/success-filter/success-filter';
+import { FailFilterPipe } from '../pipes/fail-filter/fail-filter';
+import { DateRangeFilterPipe } from '../pipes/date-range-filter/date-range-filter';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
+import { CalendarModule } from "ion2-calendar";
 import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
 
 @NgModule({
@@ -22,12 +26,16 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
     LaunchPage,
     CountDown,
     FilterPipe,
-    LaunchFilterPipe
+    LaunchFilterPipe,
+    SuccessFilterPipe,
+    FailFilterPipe,
+    DateRangeFilterPipe
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    CalendarModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

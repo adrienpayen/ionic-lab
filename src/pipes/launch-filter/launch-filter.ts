@@ -15,20 +15,20 @@ export class LaunchFilterPipe implements PipeTransform {
      * @param items 
      * @param filters 
      */
-    transform(items: any[], filters: any): any[] {
+    transform(items: any[], value): any[] {
         if (!items) {
           return [];
         }
 
-        if (!filters) {
+        if (!value) {
           return items;
         }
 
         // Filter rocket name
-        if(filters.rocket && filters.rocket != "all") {
-          filters.rocket = filters.rocket.toLowerCase();
-          items =  items.filter(item => {
-            return item.rocket.rocket_id.toLowerCase().includes(filters.rocket);
+        if(value && value != "all") {
+          value = value.toLowerCase();
+          items = items.filter(item => {
+            return item.rocket.rocket_id.toLowerCase().includes(value);
           });
         }
 
