@@ -62,7 +62,7 @@ export class HomePage {
       this.allLaunches = data;
     });
 
-    this.spacexApi.getNextLaunch().subscribe(  data => {
+    this.spacexApi.getNextLaunch().subscribe(data => {
       this.nextLaunch = data;
       this.checkTimer();
 
