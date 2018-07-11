@@ -5,7 +5,6 @@ import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
 import {IRocket} from "../../app/Models/IRocket";
 
 
-
 /*
   Generated class for the SpacexApiProvider provider.
 
@@ -51,4 +50,12 @@ export class SpacexApiProvider {
     const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
     return this.http.get<IRocket[]>(endpointUrl, {params: httpParams});
   }
+
+  getCapusle(params: any): Observable<IRootObject> {
+    const endpointUrl = `${this.baseUrl}/capsules/`;
+    const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<IRootObject>(endpointUrl);
+  }
+
+
 }
