@@ -30,10 +30,9 @@ export class LaunchPage {
 
   }
 
-
   public readMoreByRocketName(id: any) {
-    this.spacexApi.getRockets(id).subscribe(data => {
-      this.rocket = data;
+    this.spacexApi.getAllRockets(id).subscribe(data => {
+      this.rocket = data[0];
       console.log(this.rocket);
     })
   }
