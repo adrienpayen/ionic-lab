@@ -19,6 +19,8 @@ import { HttpClientModule } from "@angular/common/http";
 import { CalendarModule } from "ion2-calendar";
 import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
 
+import { LocalNotifications } from '@ionic-native/local-notifications';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -47,7 +49,8 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    SpacexApiProvider
+    SpacexApiProvider,
+    LocalNotifications
   ]
 })
 export class AppModule {}
