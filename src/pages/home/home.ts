@@ -7,6 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {LaunchPage} from '../launch/launch';
 import {CalendarModal,CalendarModalOptions,CalendarComponentOptions } from 'ion2-calendar';
 import {LocalNotifications} from '@ionic-native/local-notifications';
+import {RedditPage} from "../reddit/reddit";
 
 @IonicPage()
 @Component({
@@ -32,7 +33,9 @@ export class HomePage {
   private successOn: boolean;
   private failOn: boolean;
 
-  
+  redditPage = RedditPage;
+
+
   private dateRange: {
     from: Date;
     to: Date
@@ -76,7 +79,7 @@ export class HomePage {
     this.spacexApi.getUpcomingLaunches({order: 'desc'}).subscribe(  data => {
       this.upcomingLaunches = data;
     });
-    
+
     this.spacexApi.getPastLaunches({order: 'desc'}).subscribe(  data => {
       this.pastLaunches = data;
     });
@@ -125,18 +128,18 @@ export class HomePage {
 
   /**
    * Update lists with order DESC / ASC on "Recent" filter
-   * @param value 
+   * @param value
    */
-  public getMostRecentsOn(value) { 
+  public getMostRecentsOn(value) {
     if(value) {
       this.spacexApi.getAllLaunches({order: 'desc'}).subscribe(data => {
         this.allLaunches = data;
-      });    
+      });
 
       this.spacexApi.getUpcomingLaunches({order: 'desc'}).subscribe(  data => {
         this.upcomingLaunches = data;
       });
-      
+
       this.spacexApi.getPastLaunches({order: 'desc'}).subscribe(  data => {
         this.pastLaunches = data;
       });
@@ -148,7 +151,7 @@ export class HomePage {
       this.spacexApi.getUpcomingLaunches({}).subscribe(  data => {
         this.upcomingLaunches = data;
       });
-      
+
       this.spacexApi.getPastLaunches({}).subscribe(  data => {
         this.pastLaunches = data;
       });
@@ -169,12 +172,12 @@ export class HomePage {
       if (type === 'done') {
         this.spacexApi.getAllLaunches({start: date.from.string, final: date.to.string}).subscribe(data => {
           this.allLaunches = data;
-        });    
-  
+        });
+
         this.spacexApi.getUpcomingLaunches({start: date.from.string, final: date.to.string}).subscribe(  data => {
           this.upcomingLaunches = data;
         });
-        
+
         this.spacexApi.getPastLaunches({start: date.from.string, final: date.to.string}).subscribe(  data => {
           this.pastLaunches = data;
         });
@@ -184,9 +187,9 @@ export class HomePage {
 
   /**
    * Triggers native notification
-   * @param message 
-   * @param date 
-   * @param ledColor 
+   * @param message
+   * @param date
+   * @param ledColor
    * @param link
    */
   public triggerNotification(message: string, date: Date, ledColor: string, link: string) {
