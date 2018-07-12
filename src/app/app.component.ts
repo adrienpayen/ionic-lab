@@ -24,7 +24,6 @@ export class MyApp {
       { title: 'Home', component: HomePage },
       { title: 'Launch', component: LaunchPage }
     ];
-
   }
 
   initializeApp() {

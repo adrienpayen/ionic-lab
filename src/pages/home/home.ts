@@ -6,6 +6,7 @@ import {IRocket} from "../../app/Models/IRocket";
 import {Observable} from 'rxjs/Observable';
 import {LaunchPage} from '../launch/launch';
 import {CalendarModal,CalendarModalOptions,CalendarComponentOptions } from 'ion2-calendar';
+import {LocalNotifications} from '@ionic-native/local-notifications';
 
 @IonicPage()
 @Component({
@@ -48,7 +49,7 @@ export class HomePage {
     defaultScrollTo: new Date(Date.now())
   };
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider, public modalController: ModalController) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider, public modalController: ModalController, private localNotifications: LocalNotifications) {
     this.timerOn = 1;
     this.filtersOn = 0;
     this.launches = "all";
@@ -61,9 +62,15 @@ export class HomePage {
       this.allLaunches = data;
     });
 
-    this.spacexApi.getNextLaunch().subscribe(  data => {
+    this.spacexApi.getNextLaunch().subscribe(data => {
       this.nextLaunch = data;
       this.checkTimer();
+
+      let message = 'SpaceX will be live in 15min for the next launch';
+      let date = new Date( new Date(this.nextLaunch.launch_date_utc).getTime() - 15 * 60000);
+      let ledColor = 'FF0000';
+      let link = this.nextLaunch.links.video_link;
+      this.triggerNotification(message, date, ledColor, link);
     });
 
     this.spacexApi.getUpcomingLaunches({order: 'desc'}).subscribe(  data => {
@@ -148,6 +155,9 @@ export class HomePage {
     }
   }
 
+  /**
+   * Shows calendar for range dates
+   */
   public openCalendar() {
     let myCalendar = this.modalController.create(CalendarModal, {
       options: this.options
@@ -170,6 +180,28 @@ export class HomePage {
         });
       }
     });
+  }
+
+  /**
+   * Triggers native notification
+   * @param message 
+   * @param date 
+   * @param ledColor 
+   * @param link
+   */
+  public triggerNotification(message: string, date: Date, ledColor: string, link: string) {
+    this.localNotifications.schedule({
+      title: 'SpaceX App',
+      text: message,
+      trigger: {at: date},
+      led: ledColor,
+      sound: null
+    });
+
+    this.localNotifications.on('click').subscribe(notification => {
+      window.location.href = link;
+    });
+
   }
 
 }
