@@ -75,7 +75,7 @@ export class HomePage {
       let date = new Date( new Date(this.nextLaunch.launch_date_utc).getTime() - 15 * 60000);
       let ledColor = 'FF0000';
       let link = this.nextLaunch.links.video_link;
-      this.triggerNotification(message, date, ledColor, link);
+      //this.triggerNotification(message, date, ledColor, link);
     });
 
     this.spacexApi.getUpcomingLaunches({order: 'desc'}).subscribe(  data => {
@@ -187,13 +187,13 @@ export class HomePage {
     });
   }
 
-  /**
+  /*
    * Triggers native notification
    * @param message
    * @param date
    * @param ledColor
    * @param link
-   */
+   
   public triggerNotification(message: string, date: Date, ledColor: string, link: string) {
     this.localNotifications.schedule({
       title: 'SpaceX App',
@@ -206,7 +206,7 @@ export class HomePage {
     this.localNotifications.on('click').subscribe(notification => {
       window.location.href = link;
     });
-  }
+  } */
 
   /**
    * 

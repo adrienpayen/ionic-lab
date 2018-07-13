@@ -7,4 +7,59 @@ page-launch {
         }
     }
     
+    .launch{
+        .date{
+            background: linear-gradient(45deg, #8d44ed,#6265ff);
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+        }
+
+        .img{
+            margin: 3em auto;
+            text-align: center;
+
+            img{
+                height: 125px;
+            }
+        }
+
+        .details {
+            background: white;
+            margin: 2em 1em;
+            padding-bottom: 1em;
+
+            h2{
+                background: #363c59;
+                padding: 0.5em;
+                text-align: center;
+                color: white;
+            }
+
+            p{
+                padding: 10px;
+            }
+
+            .play-video{
+                background: linear-gradient(45deg, #8d44ed,#6265ff);
+                text-align: center;
+                width: 50px;
+                height: 50px;
+                margin: auto;
+                border-radius: 50%;
+                font-size: 22px;
+                border: 3px solid white;
+                box-shadow: 0 0 10px 5px rgba(0,0,0 , 0.2);
+
+                a{
+                    color: white;
+
+                    ion-icon{
+                        margin-top: -6px;
+                        margin-left: 2px;
+                    }
+                }
+            }
+        }
+    }
 }
