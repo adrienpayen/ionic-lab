@@ -182,16 +182,6 @@
           </ion-item>
         </ion-list>
 
-                <span *ngIf="launch.launch_success == false">
-                    <ion-badge class="badge fail-badge ">Fail</ion-badge>
-                </span>
-                <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
-                <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
-                {{launch.details}}</p>
-              <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
-            </ion-item>
-          </ion-list>
-
       </div>
     </ion-list>
   </div>
