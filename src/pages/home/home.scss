@@ -123,6 +123,39 @@ page-home {
     .item .item-button{
         color: white;
     }
+
+    .filters-tab{
+        ion-item{
+            background:rgba(111, 96, 162, 0.3);
+            color: white;
+
+            &:first-child{
+                padding-top: 1em;
+            }
+
+            &:last-child{
+                padding-bottom: 1em;
+            }
+        }
+
+        .toggle.toggle-checked .toggle-icon{
+            background: #6760fc;
+        }
+
+        .calendar{
+            text-align: center;
+            height: auto;
+
+            .item-button{
+                background: #6760fc;
+                border: 1px solid white;
+                border-radius: 50%;
+                font-size: 1.4em;
+                height: 50px;
+                width: 50px;   
+            }
+        }
+    }
 }
 
 
