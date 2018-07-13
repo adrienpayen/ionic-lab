@@ -6,7 +6,8 @@ import { CountDown } from "ng4-date-countdown-timer";
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { LaunchPage } from '../pages/launch/launch';
-import {RedditPage} from "../pages/reddit/reddit";
+import { RedditPage } from "../pages/reddit/reddit";
+import { CompanyPage } from "../pages/company/company";
 import { HttpModule } from '@angular/http';
 
 import { FilterPipe } from '../pipes/filter/filter';
@@ -20,7 +21,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
 import { CalendarModule } from "ion2-calendar";
 import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
-import {RedditApiService} from "../providers/reddit/reddit-api-service";
+import { RedditApiService } from "../providers/reddit/reddit-api-service";
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
 
@@ -31,6 +32,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     HomePage,
     LaunchPage,
     RedditPage,
+    CompanyPage,
     CountDown,
     FilterPipe,
     LaunchFilterPipe,
@@ -51,6 +53,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     HomePage,
     LaunchPage,
     RedditPage,
+    CompanyPage,
   ],
   providers: [
     StatusBar,

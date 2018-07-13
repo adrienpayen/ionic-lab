@@ -179,10 +179,10 @@
 <ion-footer>
   <ion-toolbar>
     <div class="text-center">
-      <button ion-button class="btn menu-buttons" clear [navPush]="redditPage">
+      <button ion-button class="btn menu-buttons" clear (click)="openPage(redditPage)">
         <ion-icon name="flame"></ion-icon>
       </button>
-      <button ion-button class="btn menu-buttons main-button" clear>
+      <button ion-button class="btn menu-buttons main-button" clear (click)="openPage(homePage)">
         <ion-icon name="home"></ion-icon>
       </button>
       <button ion-button class="btn menu-buttons" clear>
