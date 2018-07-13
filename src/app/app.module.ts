@@ -25,6 +25,7 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
 import { RedditApiService } from "../providers/reddit/reddit-api-service";
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
+import { ChartsModule } from 'ng2-charts';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     HttpClientModule,
     HttpModule,
     IonicModule.forRoot(MyApp),
-    CalendarModule
+    CalendarModule,
+    ChartsModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
