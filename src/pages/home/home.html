@@ -22,12 +22,12 @@
       {{nextLaunch.mission_name}}
       <br>
     </div>
-    
+
     <div *ngIf="timerOn == 1" class="card-subtitle" style="color: white !important;"><countdown (reached)="checkTimer()" units="Days | Hours | Minutes | Seconds"  end="{{ nextLaunch.launch_date_local | date:'yyyy-MM-dd HH:mm:ss Z'}}"></countdown></div>
     <div *ngIf="timerOn == 0" class="card-subtitle" style="color: white !important;">
       <div class="live">
           <a class="link" href="{{nextLaunch.links.video_link}}"><br><img class="button" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/600px-Button_Icon_Red.svg.png">Watch Live Now !</a>
-      </div>     
+      </div>
     </div>
   </ion-card>
 
@@ -46,7 +46,7 @@
     </div>
 
     <div class="filters-tab" *ngIf="filtersOn == 1">
-      
+
       <ion-item>
         <ion-label>Rocket</ion-label>
         <ion-select [(ngModel)]="rocketId" interface="popover">
@@ -56,7 +56,7 @@
           </ion-option>
         </ion-select>
       </ion-item>
-      
+
       <ion-item>
         <button ion-button (click)="openCalendar()">
           Select Date Range
@@ -67,19 +67,19 @@
         <ion-label>Show by Most Recent</ion-label>
         <ion-toggle [(ngModel)]="recentOn" (ngModelChange)="getMostRecentsOn($event)" value="true" checked="true"></ion-toggle>
       </ion-item>
-     
+
       <ion-item>
         <ion-label>Show Successes</ion-label>
         <ion-toggle [(ngModel)]="successOn" value="true" color="secondary" checked="true"></ion-toggle>
       </ion-item>
-    
+
       <ion-item>
         <ion-label>Show Fails</ion-label>
         <ion-toggle [(ngModel)]="failOn" value="true" color="danger" checked="true"></ion-toggle>
-      </ion-item> 
-          
+      </ion-item>
+
     </div>
-      
+
     <ion-toolbar no-border-top>
       <ion-segment [(ngModel)]="launches">
         <ion-segment-button value="all" default>
@@ -102,7 +102,7 @@
             </ion-thumbnail>
             <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
               <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
-            </ion-thumbnail>       
+            </ion-thumbnail>
 
             <h2 [ngClass]="{'success':     launch.launch_success == true,
                             'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
@@ -110,7 +110,7 @@
                 <span *ngIf="launch.launch_success == true">
                     <ion-badge class="badge success-badge ">Success</ion-badge>
                 </span>
-          
+
                 <span *ngIf="launch.launch_success == false">
                     <ion-badge class="badge fail-badge ">Fail</ion-badge>
                 </span>
@@ -135,7 +135,7 @@
               <span *ngIf="launch.launch_success == true">
                   <ion-badge class="badge success-badge ">Success</ion-badge>
               </span>
-        
+
               <span *ngIf="launch.launch_success == false">
                   <ion-badge class="badge fail-badge ">Fail</ion-badge>
               </span>
@@ -160,7 +160,7 @@
               <span *ngIf="launch.launch_success == true">
                   <ion-badge class="badge success-badge ">Success</ion-badge>
               </span>
-        
+
               <span *ngIf="launch.launch_success == false">
                   <ion-badge class="badge fail-badge ">Fail</ion-badge>
               </span>
@@ -179,7 +179,7 @@
 <ion-footer>
   <ion-toolbar>
     <div class="text-center">
-      <button ion-button class="btn menu-buttons" clear>
+      <button ion-button class="btn menu-buttons" clear [navPush]="redditPage">
         <ion-icon name="flame"></ion-icon>
       </button>
       <button ion-button class="btn menu-buttons main-button" clear>

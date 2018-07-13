@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {SpacexApiProvider} from "../../providers/spacex-api/spacex-api";
+
 import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
 import {IRocket} from "../../app/Models/IRocket";
 
@@ -22,6 +23,7 @@ export class LaunchPage {
   private rocket: IRocket;
   private capsule: IRootObject;
 
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
 
     this.spacexApi.getAllLaunches({'flight_number': navParams.get('flight_number')}).subscribe(data => {
@@ -37,10 +39,4 @@ export class LaunchPage {
     })
   }
 
-  public readMoreByCapsuleName(id: any) {
-    this.spacexApi.getCapusle(id).subscribe(data => {
-      this.capsule = data;
-      console.log(this.capsule);
-    })
-  }
 }
