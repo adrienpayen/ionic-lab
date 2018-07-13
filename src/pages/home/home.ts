@@ -8,7 +8,7 @@ import {LaunchPage} from '../launch/launch';
 import {CalendarModal,CalendarModalOptions,CalendarComponentOptions } from 'ion2-calendar';
 import {LocalNotifications} from '@ionic-native/local-notifications';
 import {RedditPage} from "../reddit/reddit";
-import {MyApp} from '../../app/app.component';
+import {StatsPage} from "../stats/stats";
 
 @IonicPage()
 @Component({
@@ -36,7 +36,7 @@ export class HomePage {
 
   private redditPage = RedditPage;
   private homePage = HomePage;
-  private app;
+  private statsPage = StatsPage;
 
   private dateRange: {
     from: Date;
@@ -62,7 +62,6 @@ export class HomePage {
     this.recentOn = true;
     this.successOn = true;
     this.failOn = true;
-    this.app = MyApp;
 
     this.spacexApi.getAllLaunches({order: 'desc'}).subscribe(data => {
       this.allLaunches = data;
@@ -216,4 +215,20 @@ export class HomePage {
   public openPage(page) {
     this.navCtrl.setRoot(page);
   }
+
+  /**
+   * 
+   * @param event 
+   */
+  public swipe(event) {
+    // Left
+    if(event.direction === 2) {
+      this.navCtrl.setRoot(this.statsPage);
+    }
+    // Right
+    if(event.direction === 4) {
+      this.navCtrl.setRoot(this.redditPage);
+    }
+  }
+
 }

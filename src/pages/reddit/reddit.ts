@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {RedditApiService} from "../../providers/reddit/reddit-api-service";
 import {HomePage} from "../home/home";
+import {StatsPage} from '../stats/stats';
 
 /**
  * Generated class for the RedditPage page.
@@ -22,6 +23,7 @@ export class RedditPage {
 
   private redditPage = RedditPage;
   private homePage = HomePage;
+  private statsPage = StatsPage;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private redditApi: RedditApiService) {
     this.titleOfSearch = 'spacex/new';
@@ -57,5 +59,15 @@ export class RedditPage {
    */
   public openPage(page) {
     this.navCtrl.setRoot(page);
+  }
+
+  /**
+   * 
+   * @param event 
+   */
+  public swipe(event) {
+    if(event.direction === 2) {
+      this.navCtrl.setRoot(this.homePage);
+    }
   }
 }

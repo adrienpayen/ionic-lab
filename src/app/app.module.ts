@@ -8,6 +8,7 @@ import { HomePage } from '../pages/home/home';
 import { LaunchPage } from '../pages/launch/launch';
 import { RedditPage } from "../pages/reddit/reddit";
 import { CompanyPage } from "../pages/company/company";
+import { StatsPage } from "../pages/stats/stats";
 import { HttpModule } from '@angular/http';
 
 import { FilterPipe } from '../pipes/filter/filter';
@@ -33,6 +34,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     LaunchPage,
     RedditPage,
     CompanyPage,
+    StatsPage,
     CountDown,
     FilterPipe,
     LaunchFilterPipe,
@@ -54,6 +56,7 @@ import { LocalNotifications } from '@ionic-native/local-notifications';
     LaunchPage,
     RedditPage,
     CompanyPage,
+    StatsPage,
   ],
   providers: [
     StatusBar,

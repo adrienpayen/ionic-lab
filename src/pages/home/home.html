@@ -7,106 +7,131 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="card-background-page">
-
-  <ion-card *ngIf="nextLaunch">
-    <div  *ngIf="nextLaunch.links.mission_patch_small">
-      <img src="{{nextLaunch.links.mission_patch_small}}"/>
-    </div>
-
-    <div  *ngIf="!nextLaunch.links.mission_patch_small">
-      <img src="https://i.imgur.com/CfJi6rq.jpg"/>
-      <div class="blured"></div>
-    </div>
-    <div class="card-title">
-      {{nextLaunch.mission_name}}
-      <br>
-    </div>
-
-    <div *ngIf="timerOn == 1" class="card-subtitle" style="color: white !important;"><countdown (reached)="checkTimer()" units="Days | Hours | Minutes | Seconds"  end="{{ nextLaunch.launch_date_local | date:'yyyy-MM-dd HH:mm:ss Z'}}"></countdown></div>
-    <div *ngIf="timerOn == 0" class="card-subtitle" style="color: white !important;">
-      <div class="live">
-          <a class="link" href="{{nextLaunch.links.video_link}}"><br><img class="button" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/600px-Button_Icon_Red.svg.png">Watch Live Now !</a>
+<ion-content  class="card-background-page">
+  <div class="swipeDiv" (swipe)="swipe($event)">
+    <ion-card *ngIf="nextLaunch">
+      <div  *ngIf="nextLaunch.links.mission_patch_small">
+        <img src="{{nextLaunch.links.mission_patch_small}}"/>
       </div>
-    </div>
-  </ion-card>
 
-  <ion-list>
-    <div class="search-bar">
-      <div class="items">
-          <ion-item>
-              <ion-input [(ngModel)]="missionName" type="search" placeholder="Search..." clearInput></ion-input>
-          </ion-item>
+      <div  *ngIf="!nextLaunch.links.mission_patch_small">
+        <img src="https://i.imgur.com/CfJi6rq.jpg"/>
+        <div class="blured"></div>
       </div>
-    </div>
+      <div class="card-title">
+        {{nextLaunch.mission_name}}
+        <br>
+      </div>
 
-    <div id="filters" (click)="showFilters()" >
-      Filters
-      <ion-icon name="funnel"></ion-icon>
-    </div>
+      <div *ngIf="timerOn == 1" class="card-subtitle" style="color: white !important;"><countdown (reached)="checkTimer()" units="Days | Hours | Minutes | Seconds"  end="{{ nextLaunch.launch_date_local | date:'yyyy-MM-dd HH:mm:ss Z'}}"></countdown></div>
+      <div *ngIf="timerOn == 0" class="card-subtitle" style="color: white !important;">
+        <div class="live">
+            <a class="link" href="{{nextLaunch.links.video_link}}"><br><img class="button" src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Button_Icon_Red.svg/600px-Button_Icon_Red.svg.png">Watch Live Now !</a>
+        </div>
+      </div>
+    </ion-card>
 
-    <div class="filters-tab" *ngIf="filtersOn == 1">
+    <ion-list>
+      <div class="search-bar">
+        <div class="items">
+            <ion-item>
+                <ion-input [(ngModel)]="missionName" type="search" placeholder="Search..." clearInput></ion-input>
+            </ion-item>
+        </div>
+      </div>
 
-      <ion-item>
-        <ion-label>Rocket</ion-label>
-        <ion-select [(ngModel)]="rocketId" interface="popover">
-          <ion-option value="all">All</ion-option>
-          <ion-option *ngFor="let rocket of allRockets" value="{{rocket.id}}">
-              {{rocket.name}}
-          </ion-option>
-        </ion-select>
-      </ion-item>
+      <div id="filters" (click)="showFilters()" >
+        Filters
+        <ion-icon name="funnel"></ion-icon>
+      </div>
 
-      <ion-item>
-        <button ion-button (click)="openCalendar()">
-          Select Date Range
-        </button>
-      </ion-item>
+      <div class="filters-tab" *ngIf="filtersOn == 1">
 
-      <ion-item>
-        <ion-label>Show by Most Recent</ion-label>
-        <ion-toggle [(ngModel)]="recentOn" (ngModelChange)="getMostRecentsOn($event)" value="true" checked="true"></ion-toggle>
-      </ion-item>
+        <ion-item>
+          <ion-label>Rocket</ion-label>
+          <ion-select [(ngModel)]="rocketId" interface="popover">
+            <ion-option value="all">All</ion-option>
+            <ion-option *ngFor="let rocket of allRockets" value="{{rocket.id}}">
+                {{rocket.name}}
+            </ion-option>
+          </ion-select>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Show Successes</ion-label>
-        <ion-toggle [(ngModel)]="successOn" value="true" color="secondary" checked="true"></ion-toggle>
-      </ion-item>
+        <ion-item>
+          <button ion-button (click)="openCalendar()">
+            Select Date Range
+          </button>
+        </ion-item>
 
-      <ion-item>
-        <ion-label>Show Fails</ion-label>
-        <ion-toggle [(ngModel)]="failOn" value="true" color="danger" checked="true"></ion-toggle>
-      </ion-item>
+        <ion-item>
+          <ion-label>Show by Most Recent</ion-label>
+          <ion-toggle [(ngModel)]="recentOn" (ngModelChange)="getMostRecentsOn($event)" value="true" checked="true"></ion-toggle>
+        </ion-item>
 
-    </div>
+        <ion-item>
+          <ion-label>Show Successes</ion-label>
+          <ion-toggle [(ngModel)]="successOn" value="true" color="secondary" checked="true"></ion-toggle>
+        </ion-item>
 
-    <ion-toolbar no-border-top>
-      <ion-segment [(ngModel)]="launches">
-        <ion-segment-button value="all" default>
-            All
-        </ion-segment-button>
-        <ion-segment-button value="upcoming">
-            Upcoming
-        </ion-segment-button>
-        <ion-segment-button value="past">
-            Past
-        </ion-segment-button>
-      </ion-segment>
-    </ion-toolbar>
+        <ion-item>
+          <ion-label>Show Fails</ion-label>
+          <ion-toggle [(ngModel)]="failOn" value="true" color="danger" checked="true"></ion-toggle>
+        </ion-item>
 
-    <div [ngSwitch]="launches">
-        <ion-list *ngSwitchCase="'all'">
-          <ion-item *ngFor="let launch of allLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
-            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
-              <img src="{{launch.links.mission_patch_small}}">
-            </ion-thumbnail>
-            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
-              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
-            </ion-thumbnail>
+      </div>
 
-            <h2 [ngClass]="{'success':     launch.launch_success == true,
-                            'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>
+      <ion-toolbar no-border-top>
+        <ion-segment [(ngModel)]="launches">
+          <ion-segment-button value="all" default>
+              All
+          </ion-segment-button>
+          <ion-segment-button value="upcoming">
+              Upcoming
+          </ion-segment-button>
+          <ion-segment-button value="past">
+              Past
+          </ion-segment-button>
+        </ion-segment>
+      </ion-toolbar>
+
+      <div [ngSwitch]="launches">
+          <ion-list *ngSwitchCase="'all'">
+            <ion-item *ngFor="let launch of allLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
+              <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
+                <img src="{{launch.links.mission_patch_small}}">
+              </ion-thumbnail>
+              <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+                <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
+              </ion-thumbnail>
+
+              <h2 [ngClass]="{'success':     launch.launch_success == true,
+                              'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
+              <p>
+                  <span *ngIf="launch.launch_success == true">
+                      <ion-badge class="badge success-badge ">Success</ion-badge>
+                  </span>
+
+                  <span *ngIf="launch.launch_success == false">
+                      <ion-badge class="badge fail-badge ">Fail</ion-badge>
+                  </span>
+                  <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
+                  <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
+                {{launch.details}}</p>
+              <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+            </ion-item>
+          </ion-list>
+
+          <ion-list *ngSwitchCase="'upcoming'">
+            <ion-item *ngFor="let launch of upcomingLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
+              <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
+                <img src="{{launch.links.mission_patch_small}}">
+              </ion-thumbnail>
+              <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+                <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
+              </ion-thumbnail>
+              <h2 [ngClass]="{'success':     launch.launch_success == true,
+                              'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
+              <p>
                 <span *ngIf="launch.launch_success == true">
                     <ion-badge class="badge success-badge ">Success</ion-badge>
                 </span>
@@ -116,64 +141,39 @@
                 </span>
                 <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
                 <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
-              {{launch.details}}</p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
-          </ion-item>
-        </ion-list>
+                {{launch.details}}</p>
+              <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+            </ion-item>
+          </ion-list>
 
-        <ion-list *ngSwitchCase="'upcoming'">
-          <ion-item *ngFor="let launch of upcomingLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
-            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
-              <img src="{{launch.links.mission_patch_small}}">
-            </ion-thumbnail>
-            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
-              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
-            </ion-thumbnail>
-            <h2 [ngClass]="{'success':     launch.launch_success == true,
-                            'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>
-              <span *ngIf="launch.launch_success == true">
-                  <ion-badge class="badge success-badge ">Success</ion-badge>
-              </span>
+          <ion-list *ngSwitchCase="'past'">
+            <ion-item *ngFor="let launch of pastLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
+              <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
+                <img src="{{launch.links.mission_patch_small}}">
+              </ion-thumbnail>
+              <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+                <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
+              </ion-thumbnail>
+              <h2 [ngClass]="{'success':     launch.launch_success == true,
+                              'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
+              <p>
+                <span *ngIf="launch.launch_success == true">
+                    <ion-badge class="badge success-badge ">Success</ion-badge>
+                </span>
 
-              <span *ngIf="launch.launch_success == false">
-                  <ion-badge class="badge fail-badge ">Fail</ion-badge>
-              </span>
-              <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
-              <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
-              {{launch.details}}</p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
-          </ion-item>
-        </ion-list>
+                <span *ngIf="launch.launch_success == false">
+                    <ion-badge class="badge fail-badge ">Fail</ion-badge>
+                </span>
+                <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
+                <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
+                {{launch.details}}</p>
+              <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
+            </ion-item>
+          </ion-list>
 
-        <ion-list *ngSwitchCase="'past'">
-          <ion-item *ngFor="let launch of pastLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
-            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
-              <img src="{{launch.links.mission_patch_small}}">
-            </ion-thumbnail>
-            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
-              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
-            </ion-thumbnail>
-            <h2 [ngClass]="{'success':     launch.launch_success == true,
-                            'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>
-              <span *ngIf="launch.launch_success == true">
-                  <ion-badge class="badge success-badge ">Success</ion-badge>
-              </span>
-
-              <span *ngIf="launch.launch_success == false">
-                  <ion-badge class="badge fail-badge ">Fail</ion-badge>
-              </span>
-              <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
-              <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
-              {{launch.details}}</p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">Read More</button>
-          </ion-item>
-        </ion-list>
-
-    </div>
-  </ion-list>
-
+      </div>
+    </ion-list>
+  </div>
 </ion-content>
 
 <ion-footer>
@@ -185,7 +185,7 @@
       <button ion-button class="btn menu-buttons main-button" clear (click)="openPage(homePage)">
         <ion-icon name="home"></ion-icon>
       </button>
-      <button ion-button class="btn menu-buttons" clear>
+      <button ion-button class="btn menu-buttons" clear (click)="openPage(statsPage)">
         <ion-icon name="stats"></ion-icon>
       </button>
     </div>
