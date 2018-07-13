@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {RedditApiService} from "../../providers/reddit/reddit-api-service";
+import {HomePage} from "../home/home";
 
 /**
  * Generated class for the RedditPage page.
@@ -19,6 +20,9 @@ export class RedditPage {
   public redditG: Array<any>;
   titleOfSearch;
 
+  private redditPage = RedditPage;
+  private homePage = HomePage;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, private redditApi: RedditApiService) {
     this.titleOfSearch = 'spacex/new';
     this.load(this.titleOfSearch);
@@ -28,7 +32,6 @@ export class RedditPage {
     this.redditApi.fetch(url).subscribe((data) => {
       this.redditG = data;
       this.loadCompleted = true;
-      console.log(data)
     })
   }
 
@@ -46,7 +49,13 @@ export class RedditPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RedditPage');
   }
 
+  /**
+   * 
+   * @param page Open a page
+   */
+  public openPage(page) {
+    this.navCtrl.setRoot(page);
+  }
 }
