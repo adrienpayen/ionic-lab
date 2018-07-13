@@ -13,24 +13,26 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <ion-list *ngFor="let getinfoReddit of redditG">
-    <ion-item>
-      <ion-thumbnail item-start>
-        <img src={{getinfoReddit.thumbnail}}>
-      </ion-thumbnail>
-      <h2>{{getinfoReddit.title}}</h2>
-      <p>Posted by {{getinfoReddit.author}}</p>
-      <a ion-button clear item-end href="https://www.reddit.com{{getinfoReddit.permalink}}">View more</a>
-    </ion-item>
-  </ion-list>
+<ion-content (swipe)="swipe($event)" padding>
+  <div class="swipeDiv" (swipe)="swipe($event)">
+    <ion-list *ngFor="let getinfoReddit of redditG">
+      <ion-item>
+        <ion-thumbnail item-start>
+          <img src={{getinfoReddit.thumbnail}}>
+        </ion-thumbnail>
+        <h2>{{getinfoReddit.title}}</h2>
+        <p>Posted by {{getinfoReddit.author}}</p>
+        <a ion-button clear item-end href="https://www.reddit.com{{getinfoReddit.permalink}}">View more</a>
+      </ion-item>
+    </ion-list>
 
-  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
-    <ion-infinite-scroll-content color="primary">
-      loadingSpinner="crescent"
-      loadingText="Loading more fun...">
-    </ion-infinite-scroll-content>
-  </ion-infinite-scroll>
+    <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+      <ion-infinite-scroll-content color="primary">
+        loadingSpinner="crescent"
+        loadingText="Loading more fun...">
+      </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </div>
 </ion-content>
 
 <ion-footer>
@@ -42,7 +44,7 @@
       <button ion-button class="btn menu-buttons main-button" clear (click)="openPage(homePage)">
         <ion-icon name="home"></ion-icon>
       </button>
-      <button ion-button class="btn menu-buttons" clear>
+      <button ion-button class="btn menu-buttons" clear (click)="openPage(statsPage)">
         <ion-icon name="stats"></ion-icon>
       </button>
     </div>
