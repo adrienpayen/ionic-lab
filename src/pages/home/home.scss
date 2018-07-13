@@ -1,6 +1,29 @@
 page-home {
+    .segment-ios .segment-button.segment-activated{
+        border-color: #ada4f6;
+    }
+
+    .launches{
+        border: 0;
+        padding: 1em 0;
+
+        ion-item{
+            &.item-block{
+                background:white; 
+                margin-bottom:15px; 
+                color: black; 
+                padding: 10px 20px; 
+                border-radius: 10px;
+                box-shadow: 0 0 10px -5px grey;
+
+                &:first-child, &:last-child{
+                    border: none;
+                }
+            }
+        }
+    }
+
     .card-background-page {
-        
         .card-ios, .card-md {
             margin: 0px;
             width: 100%;

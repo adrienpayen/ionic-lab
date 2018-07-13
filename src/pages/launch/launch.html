@@ -1,5 +1,5 @@
-<ion-content class="card-background-page">
-    <div *ngIf="launch">
+<ion-content class="card-background-page" *ngIf="launch">
+    <div>
         <h1>{{launch.mission_name}}</h1>
         <div  *ngIf="launch.links.mission_patch_small" style="max-width: 150px; margin: auto;">
             <img src="{{launch.links.mission_patch_small}}"/>
@@ -9,7 +9,7 @@
             <img src="https://www.cabinetmakerwarehouse.com/wp-content/uploads/9242-gull-grey.jpg"/>
         </div>
     </div>
-    <ion-card *ngIf="launch">
+    <ion-card>
         <ion-card-content>
             <ion-card-title>
                 {{launch.mission_name}} - on {{launch.launch_date_utc | date}}
@@ -25,11 +25,16 @@
       </ion-card>
 
       <h2>More info</h2>
-      <ion-card *ngIf="launch" class="info-content">
+      <ion-card class="info-content">
         <ion-card-content>
             <ion-item>
                 <ion-icon name="jet" item-start></ion-icon>
                 {{launch.rocket.rocket_name}} 
+                <ion-badge item-end>More Info</ion-badge>
+            </ion-item>
+            <ion-item>
+                <ion-icon name="planet" item-start></ion-icon>
+                {{ launch.rocket.second_stage.payloads.orbit }} 
                 <ion-badge item-end>More Info</ion-badge>
             </ion-item>
             <ion-item>
@@ -45,21 +50,6 @@
       </ion-card>
 </ion-content>
 
-<ion-footer>
-    <ion-toolbar>
-        <div class="text-center">
-            <button ion-button menuToggle class="btn menu-buttons" clear>
-                <ion-icon name="ios-more" style="color: #ada4f6;"></ion-icon>
-            </button>
-            <button ion-button class="btn menu-buttons" clear>
-                <ion-icon name="flame"></ion-icon>
-            </button>
-            <button ion-button class="btn menu-buttons main-button" clear>
-                <ion-icon name="home"></ion-icon>
-            </button>
-            <button ion-button class="btn menu-buttons" clear>
-                <ion-icon name="text"></ion-icon>
-            </button>
-        </div>
-    </ion-toolbar>
-</ion-footer>
+<ion-content class="card-background-page" *ngIf="!launch">
+    <h1>Error 404 - Not found</h1>>
+</ion-content>

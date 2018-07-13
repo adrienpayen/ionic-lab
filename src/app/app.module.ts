@@ -13,12 +13,14 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { HttpClientModule } from "@angular/common/http";
 import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
+import { RocketPage } from '../pages/rocket/rocket';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     LaunchPage,
+    RocketPage,
     CountDown,
     FilterPipe
   ],
@@ -32,6 +34,7 @@ import { SpacexApiProvider } from "../providers/spacex-api/spacex-api";
     MyApp,
     HomePage,
     LaunchPage,
+    RocketPage
   ],
   providers: [
     StatusBar,

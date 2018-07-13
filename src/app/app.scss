@@ -51,6 +51,7 @@ a {
     padding: 3px;
     display: block;
     text-align: center;
+    border-radius: 5px;
 
     .items {
         padding: 5px 15px 5px 15px;
@@ -74,7 +75,7 @@ a {
 
 .content{
     color:#ada4f6;
-    background: #e7f1f7;
+    background: #fff;
 }
 
 .bar-button-menutoggle{
@@ -97,7 +98,7 @@ a {
 }
 
 .toolbar-background {
-    background: #e7f1f7;
+    background: #fff;
 }
 
 .toolbar-title{

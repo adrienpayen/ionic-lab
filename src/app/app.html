@@ -17,3 +17,22 @@
 
 <!-- Disable swipe-to-go-back because it's poor UX to combine STGB with side menus -->
 <ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
+
+<ion-footer>
+    <ion-toolbar>
+      <div class="text-center">
+        <button ion-button menuToggle class="btn menu-buttons" clear>
+          <ion-icon name="ios-more"></ion-icon>
+        </button>
+        <button ion-button class="btn menu-buttons" clear>
+          <ion-icon name="flame"></ion-icon>
+        </button>
+        <button ion-button class="btn menu-buttons main-button" clear style="color: #ada4f6;">
+          <ion-icon name="ios-paper"></ion-icon>
+        </button>
+        <button ion-button class="btn menu-buttons" clear>
+          <ion-icon name="text"></ion-icon>
+        </button>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
