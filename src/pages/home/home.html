@@ -97,37 +97,37 @@
 
     <div [ngSwitch]="launches" class="launches">
         <ion-list *ngSwitchCase="'all'">
-          <ion-item *ngFor="let launch of allLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
-            <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
-              <img src="{{launch.links.mission_patch_small}}">
-            </ion-thumbnail>
-            <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
-              <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
-            </ion-thumbnail>
-
-            <h2 [ngClass]="{'success':     launch.launch_success == true,
-                            'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
-            <p>
-                <span *ngIf="launch.launch_success == true">
-                    <ion-badge class="badge success-badge ">Success</ion-badge>
-                </span>
-
-                <span *ngIf="launch.launch_success == false">
-                    <ion-badge class="badge fail-badge ">Fail</ion-badge>
-                </span>
-                <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
-                <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
-
-              {{launch.details}}
-            </p>
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">
-              <ion-icon name="ios-arrow-forward"></ion-icon>
-            </button>
+          <ion-item *ngFor="let launch of allLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn" (click)="readMore(launch.flight_number)">
+                <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
+                    <img src="{{launch.links.mission_patch_small}}">
+                  </ion-thumbnail>
+                  <ion-thumbnail *ngIf="!launch.links.mission_patch_small" item-start>
+                    <img src="https://cdn.shopify.com/s/files/1/0185/5092/products/places-0038_800x.png?v=1369543879">
+                  </ion-thumbnail>
+      
+                  <h2 [ngClass]="{'success':     launch.launch_success == true,
+                                  'fail':   launch.launch_success == false}">{{launch.mission_name}}</h2>
+                  <p>
+                      <span *ngIf="launch.launch_success == true">
+                          <ion-badge class="badge success-badge ">Success</ion-badge>
+                      </span>
+      
+                      <span *ngIf="launch.launch_success == false">
+                          <ion-badge class="badge fail-badge ">Fail</ion-badge>
+                      </span>
+                      <ion-badge class="badge">{{launch.rocket.rocket_name}}</ion-badge>
+                      <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
+      
+                    {{launch.details}}
+                  </p>
+                  <button ion-button clear item-end>
+                    <ion-icon name="ios-arrow-forward"></ion-icon>
+                  </button>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'upcoming'">
-          <ion-item *ngFor="let launch of upcomingLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
+          <ion-item *ngFor="let launch of upcomingLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn" (click)="readMore(launch.flight_number)">
             <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
             </ion-thumbnail>
@@ -148,14 +148,14 @@
               <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
               {{launch.details}}</p>
               
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">
+            <button ion-button clear item-end>
                 <ion-icon name="ios-arrow-forward"></ion-icon>
               </button>
           </ion-item>
         </ion-list>
 
         <ion-list *ngSwitchCase="'past'">
-          <ion-item *ngFor="let launch of pastLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn">
+          <ion-item *ngFor="let launch of pastLaunches | filter : missionName | launchFilter : rocketId | successFilter : successOn | failFilter : failOn" (click)="readMore(launch.flight_number)">
             <ion-thumbnail *ngIf="launch.links.mission_patch_small" item-start>
               <img src="{{launch.links.mission_patch_small}}">
             </ion-thumbnail>
@@ -176,7 +176,7 @@
               <ion-badge class="badge">{{launch.launch_year}}</ion-badge><br>
               {{launch.details}}</p>
               
-            <button ion-button clear item-end (click)="readMore(launch.flight_number)">
+            <button ion-button clear item-end>
                 <ion-icon name="ios-arrow-forward"></ion-icon>
               </button>
           </ion-item>
@@ -188,7 +188,6 @@
 </ion-content>
 
 <ion-footer>
-
   <ion-toolbar>
     <div class="text-center">
       <button ion-button class="btn menu-buttons" clear (click)="openPage(redditPage)">

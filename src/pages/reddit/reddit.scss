@@ -1,3 +1,12 @@
 page-reddit {
-
+    .list{
+        margin: initial;
+    }
+    
+    .item{
+        margin: 0.4em 0;
+        border-radius: 8px;
+        background: #1d2134;
+        color: white;
+    }
 }

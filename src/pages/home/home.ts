@@ -34,6 +34,8 @@ export class HomePage {
   private successOn: boolean;
   private failOn: boolean;
 
+  showFooter: boolean = true;
+
   private redditPage = RedditPage;
   private homePage = HomePage;
   private statsPage = StatsPage;
@@ -230,5 +232,4 @@ export class HomePage {
       this.navCtrl.setRoot(this.redditPage);
     }
   }
-
 }
