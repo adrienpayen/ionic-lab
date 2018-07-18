@@ -66,23 +66,27 @@ export class StatsPage {
       let statData = [];
       
       // Launches per Rocket
-      launches.forEach(launch => {
-        if(launch.launch_success != undefined) {
-          let rocketName = launch.rocket.rocket_id;
-          if(statRocket[rocketName]) {
-            statRocket[rocketName] += 1;
-          } else {
-            statRocket[rocketName] = 1;
+      if (launches){
+        launches.forEach(launch => {
+          if(launch.launch_success != undefined) {
+            let rocketName = launch.rocket.rocket_id;
+            if(statRocket[rocketName]) {
+              statRocket[rocketName] += 1;
+            } else {
+              statRocket[rocketName] = 1;
+            }
           }
-        }
-      });
+        });
+      }
 
-      rockets.forEach(rocket => {
-        this.rocketLabels[this.i++] = rocket.id;
-        if(statRocket[rocket.id]) {
-          statData.push(statRocket[rocket.id]);
-        }
-      });
+      if (rockets) {
+        rockets.forEach(rocket => {
+          this.rocketLabels[this.i++] = rocket.id;
+          if(statRocket[rocket.id]) {
+            statData.push(statRocket[rocket.id]);
+          }
+        });
+      }
 
       this.rocketData = [
         {data: statData, label: 'Rockets'}
