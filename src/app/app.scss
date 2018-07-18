@@ -56,8 +56,8 @@ a {
 .search-bar {
     position: relative;
     top: -30px;
-    background: #fff;
-    box-shadow: 1px 1px 10px #555;
+    background: white;
+    border-radius: 5px;
     width: 75%;
     margin-left: auto;
     margin-right: auto;
@@ -66,16 +66,33 @@ a {
     text-align: center;
 
     .items {
-        padding: 5px 15px 5px 15px;
+        padding: 0 15px;
 
         ion-item {
             padding-left: 0px;
+
+            .item-inner{
+                background: white;
+            }
         }
-        .text-input-wp {
+        .text-input {
+            background: none;
             border: none;
         }
     }
    
+}
+
+.list .item-block .item-inner{
+    border: none;
+}
+
+.list > .item-block:first-child, .list > .item-block:last-child {
+    border: none;
+}
+
+ion-segment.segment{
+    background: #0d101d;
 }
 
 .menu-buttons {
@@ -86,4 +103,45 @@ a {
 .swipeDiv {
     height: 100vh;
     background: transparent;
+}
+
+ion-header{
+    .toolbar-background{
+        background: #0d101d;
+    }
+    
+    .toolbar-title{
+        color: white;
+    }
+
+    .bar-button-menutoggle{
+        color: white;
+    }
+}
+
+.footer{
+    margin: 0;
+
+    .menu-buttons {
+        font-size: 25px;
+    }
+    
+    .btn {
+        color:#ccd8e1;
+        height: 50px;
+        padding: 0;
+        margin: 0 1.2em;
+    }
+
+    .toolbar-background{
+        background: #0d101d;
+    }
+}
+
+.bar-button-default, .bar-button-default.bar-button-default, .bar-button-clear-default{
+    color: white;
+}
+
+.content, .content-ios{
+    background: #0d101d;
 }

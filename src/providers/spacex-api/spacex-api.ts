@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from "rxjs/Observable";
 import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
 import {IRocket} from "../../app/Models/IRocket";
+import { ICompany } from '../../app/Models/ICompany';
 
 
 /*
@@ -57,5 +58,14 @@ export class SpacexApiProvider {
     return this.http.get<IRootObject>(endpointUrl);
   }
 
+  /* Company data */
+  getCompany(): Observable<ICompany> {
+    const endpointUrl = `${this.baseUrl}/info`;
+    return this.http.get<ICompany>(endpointUrl);
+  }
 
+  getCompanyHistory(): Observable<IRootObject> {
+    const endpointUrl = `${this.baseUrl}/info/history`;
+    return this.http.get<IRootObject>(endpointUrl);
+  }
 }

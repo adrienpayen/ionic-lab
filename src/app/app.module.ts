@@ -26,6 +26,7 @@ import { RedditApiService } from "../providers/reddit/reddit-api-service";
 
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { ChartsModule } from 'ng2-charts';
+import { RocketPage } from '../pages/rocket/rocket';
 
 
 @NgModule({
@@ -42,6 +43,7 @@ import { ChartsModule } from 'ng2-charts';
     SuccessFilterPipe,
     FailFilterPipe,
     DateRangeFilterPipe,
+    RocketPage,
   ],
   imports: [
     BrowserModule,
@@ -59,6 +61,7 @@ import { ChartsModule } from 'ng2-charts';
     RedditPage,
     CompanyPage,
     StatsPage,
+    RocketPage,
   ],
   providers: [
     StatusBar,

@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import {Observable} from 'rxjs/Observable';
 import { SpacexApiProvider } from '../../providers/spacex-api/spacex-api';
-import { ICompany } from '../../app/Models/ICompany';
 
 /**
- * Generated class for the CompanyPage page.
+ * Generated class for the RocketPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
@@ -13,21 +11,24 @@ import { ICompany } from '../../app/Models/ICompany';
 
 @IonicPage()
 @Component({
-  selector: 'page-company',
-  templateUrl: 'company.html',
+  selector: 'page-rocket',
+  templateUrl: 'rocket.html',
 })
-export class CompanyPage {
-  private company: ICompany;
+export class RocketPage {
+  private rocket;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, private spacexApi: SpacexApiProvider) {
-    this.spacexApi.getCompany().subscribe(data => {
-      this.company = data;
-      console.log(data);
+    /*this.spacexApi.getAllRockets({order: 'desc'}).subscribe(data => {
+      this.rockets = data;
+    });*/
+
+    this.spacexApi.getAllRockets({'id': navParams.get('rocket_id')}).subscribe(data => {
+      this.rocket = data[0];
     });
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad CompanyPage');
+    console.log('ionViewDidLoad RocketPage');
   }
 
 }

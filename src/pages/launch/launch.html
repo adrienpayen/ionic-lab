@@ -5,44 +5,51 @@
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Launch </ion-title>
   </ion-navbar>
-
 </ion-header>
 
 
 <ion-content class="card-background-page">
-    <ion-card *ngIf="launch">
-        <div  *ngIf="launch.links.mission_patch_small">
-            <img src="{{launch.links.mission_patch_small}}"/>
+    <div *ngIf="launch" class="launch">
+        <div class="date">
+            on {{launch.launch_date_utc | date}}
         </div>
 
-        <div  *ngIf="!launch.links.mission_patch_small">
-            <img src="https://www.cabinetmakerwarehouse.com/wp-content/uploads/9242-gull-grey.jpg"/>
+        <div class="img">
+            <div  *ngIf="launch.links.mission_patch_small">
+                <img src="{{launch.links.mission_patch_small}}"/>
+            </div>
+    
+            <div  *ngIf="!launch.links.mission_patch_small">
+                <img src="https://www.cabinetmakerwarehouse.com/wp-content/uploads/9242-gull-grey.jpg"/>
+            </div>
         </div>
-        <ion-card-content>
-          <ion-card-title>
-              {{launch.mission_name}} - on {{launch.launch_date_utc | date}}
-            </ion-card-title>
-          <p>
-              {{launch.details}}<br>
-          </p>
-          <p>
-              <a href="{{launch.links.video_link}}" target="blank" ><ion-icon name="logo-youtube" padding item-start></ion-icon>Watch Video</a>
-          </p>
-        </ion-card-content>
 
-      </ion-card>
+        <div class="details">
+            <h2>
+                {{launch.mission_name}}
+            </h2>
+            <p *ngIf="launch.details">
+                {{launch.details}}<br>
+            </p>
+            <div class="play-video">
+                <a href="{{launch.links.video_link}}" target="blank" >
+                    <ion-icon name="ios-play" padding item-start></ion-icon>
+                </a>
+            </div>
+        </div>
+
+    </div>
 
       <ion-card *ngIf="launch">
         <ion-card-header>
           More Info
         </ion-card-header>
         <ion-card-content>
-            <ion-item>
-                <ion-icon name="jet" item-start></ion-icon>{{launch.rocket.rocket_name}} <ion-badge item-end (click)="readMoreByRocketName(launch.rocket.rocket_id)">More Info</ion-badge>
+            <ion-item (click)="readMoreByRocketName(launch.rocket.rocket_id)">
+                <ion-icon name="jet" item-start></ion-icon>{{launch.rocket.rocket_name}} <ion-badge item-end>More Info</ion-badge>
             </ion-item>
             <ion-item>
                 <ion-icon name="pin" item-start></ion-icon>{{launch.launch_site.site_name}} <ion-badge item-end>More Info</ion-badge>

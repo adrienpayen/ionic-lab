@@ -1,5 +1,20 @@
 page-home {
 
+    .launches{
+        padding: 0 1em;
+
+        .item{
+            margin: 0.4em 0;
+            border-radius: 8px;
+            background: #1d2134;
+            color: white;
+        }
+    }
+
+    .content{
+        background: #0d101d;
+    }
+
     .card-background-page {
         
         .card-ios, .card-md {
@@ -87,14 +102,60 @@ page-home {
     #filters {
         padding: 10px;
         text-align: center;
-        background: #488aff;
+        background: linear-gradient(45deg, #8d44ed,#6265ff);
+        color: white;
+        box-shadow: inset 0px 0px 10px 0px rgba(114, 114, 114, 0.75);
+    }
+
+    .light-filters {
+        margin: 1em 0;
+    }
+    
+    .segment .segment-button{
+        border: none;
+        color: white;
+
+        &.segment-activated{
+            background: linear-gradient(45deg, #8d44ed,#6265ff);
+        }
+    }
+
+    .item .item-button{
         color: white;
     }
 
-    .filters-tab {
-        padding: 20px;
+    .filters-tab{
+        ion-item{
+            background:rgba(111, 96, 162, 0.3);
+            color: white;
+
+            &:first-child{
+                padding-top: 1em;
+            }
+
+            &:last-child{
+                padding-bottom: 1em;
+            }
+        }
+
+        .toggle.toggle-checked .toggle-icon{
+            background: #6760fc;
+        }
+
+        .calendar{
+            text-align: center;
+            height: auto;
+
+            .item-button{
+                background: #6760fc;
+                border: 1px solid white;
+                border-radius: 50%;
+                font-size: 1.4em;
+                height: 50px;
+                width: 50px;   
+            }
+        }
     }
-    
 }
 
 
