@@ -1,3 +1,18 @@
 page-rocket {
+    .rocket-name{
+        background: linear-gradient(45deg, #8d44ed,#6265ff);
+        color: white;
+        text-align: center;
+        padding: 1em 0;
+    }
 
+    .price{
+        background: rgba(113, 90, 249, 0.15);
+
+        .card-header,.card-header-ios{
+            background: linear-gradient(90deg, #8a45ef, #6362fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    }
 }

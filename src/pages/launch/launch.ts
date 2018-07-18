@@ -4,6 +4,7 @@ import {SpacexApiProvider} from "../../providers/spacex-api/spacex-api";
 
 import {ILaunchsite, IRootObject} from "../../app/Models/ILaunch";
 import {IRocket} from "../../app/Models/IRocket";
+import { RocketPage } from '../rocket/rocket';
 
 /**
  * Generated class for the LaunchPage page.
@@ -35,7 +36,7 @@ export class LaunchPage {
   public readMoreByRocketName(id: any) {
     this.spacexApi.getAllRockets(id).subscribe(data => {
       this.rocket = data[0];
-      console.log(this.rocket);
+      this.navCtrl.push(RocketPage, { rocket_id: this.rocket.rocket_id});
     })
   }
 

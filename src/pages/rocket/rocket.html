@@ -7,12 +7,48 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>rocket</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
+  <div class="rocket-name" *ngIf="rocket">
+    {{rocket.name}}
+  </div>
+
+  <ion-grid *ngIf="rocket">
+    <ion-row>
+      <ion-col col-12>
+          <ion-card class="price">
+              <ion-card-header class="text-center">
+                {{rocket.cost_per_launch | currency : symbol : fractionSize}}
+              </ion-card-header>
+            </ion-card>
+      </ion-col>
+      <ion-col col-12>
+          <ion-card>
+              <ion-card-content>
+                {{rocket.description}}
+              </ion-card-content>
+            </ion-card>
+        </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+          <ion-card>
+              <ion-card-header>
+                <ion-icon name="resize"></ion-icon> {{rocket.height.meters}}m (height)
+              </ion-card-header>
+              <ion-card-header>
+                  <ion-icon name="resize"></ion-icon> {{rocket.diameter.meters}}m (diameter)
+              </ion-card-header>
+              <ion-card-header>
+                  <ion-icon name="options"></ion-icon> {{rocket.mass.kg}} kg
+                </ion-card-header>
+            </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 
 </ion-content>
