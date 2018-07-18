@@ -25,7 +25,7 @@ export class CompanyPage {
       this.company = data;
     });
 
-    this.spacexApi.getCompanyHistory().subscribe(data => {
+    this.spacexApi.getCompanyHistory({order: 'desc'}).subscribe(data => {
       this.history = data;
       console.log(this.history)
     });

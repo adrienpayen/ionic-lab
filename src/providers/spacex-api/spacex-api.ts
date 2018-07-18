@@ -64,8 +64,9 @@ export class SpacexApiProvider {
     return this.http.get<ICompany>(endpointUrl);
   }
 
-  getCompanyHistory(): Observable<ICompanyHistory> {
+  getCompanyHistory(params: any): Observable<ICompanyHistory> {
     const endpointUrl = `${this.baseUrl}/info/history`;
-    return this.http.get<ICompanyHistory>(endpointUrl);
+    const httpParams = Object.getOwnPropertyNames(params).reduce((p, key) => p.set(key, params[key]), new HttpParams());
+    return this.http.get<ICompanyHistory>(endpointUrl, {params: httpParams});
   }
 }
