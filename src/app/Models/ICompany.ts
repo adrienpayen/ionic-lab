@@ -20,3 +20,22 @@ export interface Iheadquarters {
   city: string;
   state: string;
 }
+
+export interface ICompanyHistory {
+  event: HistoricEvent;
+}
+
+export interface HistoricEvent {
+  title: string;
+  event_date_utc: string;
+  event_date_unix: string;
+  flight_number?: string;
+  details: string;
+  links: Links;
+}
+
+export interface Links {
+  reddit: string;
+  article: string;
+  wikipedia: string;
+}

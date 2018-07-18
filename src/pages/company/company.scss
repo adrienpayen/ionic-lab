@@ -1,4 +1,11 @@
 page-company {
+    .date {
+        background: linear-gradient(45deg, #8d44ed,#6265ff);
+        color: white;
+        text-align: center;
+        padding: 1em 0;
+    }
+
     .card {
         ion-card-header{
             font-size: 1.4em;

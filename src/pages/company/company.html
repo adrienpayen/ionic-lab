@@ -63,7 +63,37 @@
             </ion-row>
           </ion-grid>
     </ion-card-content>
-  
   </ion-card>
+
+<h2 style="color: white;">Historic</h2>
+
+<ion-card *ngFor="let event of history">
+  <div class="date">{{ event.event_date_utc  | date:'medium'}}</div>
+  <ion-card-content class="text-center">
+    <b>{{ event.title }}</b>
+    <p>{{ event.details }}</p>
+  </ion-card-content>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 class="text-center">
+        <a href="{{ event.links.reddit }}">
+          <ion-icon name="logo-reddit"></ion-icon>
+        </a>
+      </ion-col>
+      <ion-col col-4 class="text-center">
+        <a href="{{ event.links.article }}">
+            <ion-icon name="ios-paper"></ion-icon>
+        </a>
+      </ion-col>
+      <ion-col col-4 class="text-center">
+        <a href="{{ event.links.wikipedia }}">
+            <ion-icon name="ios-school"></ion-icon>
+        </a>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+    
+</ion-card>
 
 </ion-content>
